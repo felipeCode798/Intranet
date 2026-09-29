@@ -1,0 +1,329 @@
+// Grupo Playtech · Intranets y gestión de solicitudes
+// Modelo de datos (PostgreSQL + Prisma)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Rol global dentro del holding
+enum GlobalRole {
+  SUPER_ADMIN // Administra todo el holding (empresas, áreas, usuarios, reportes)
+  COMPANY_ADMIN // Administra la intranet y los usuarios de su empresa
+  USER // Colaborador
+}
+
+/// Rol dentro de un área
+enum AreaRole {
+  LEADER // Líder: recibe, asigna, reasigna, traslada y edita formularios
+  MEMBER // Colaborador del área: atiende las solicitudes asignadas
+}
+
+enum RequestStatus {
+  PENDING_ASSIGNMENT // Radicada, esperando que el líder la asigne
+  ASSIGNED // Asignada, esperando que el colaborador la acepte
+  IN_PROGRESS // Aceptada y en gestión
+  ESCALATION_REQUESTED // El colaborador pidió escalarla: vuelve al líder
+  RESOLVED // Respondida
+  CANCELLED // Anulada por el solicitante
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum EventType {
+  CREATED
+  ASSIGNED
+  ACCEPTED
+  ESCALATION_REQUESTED
+  ESCALATION_REJECTED
+  REASSIGNED
+  TRANSFERRED
+  RESPONDED
+  COMMENTED
+  DUE_SOON_ALERT
+  OVERDUE_ALERT
+  CANCELLED
+}
+
+enum EscalationTarget {
+  USER
+  AREA
+}
+
+enum EscalationStatus {
+  PENDING
+  RESOLVED
+}
+
+model Company {
+  id               String   @id @default(uuid())
+  name             String
+  slug             String   @unique
+  legalName        String?
+  nit              String?
+  slogan           String?
+  description      String?
+  primaryColor     String   @default("#1d4ed8")
+  secondaryColor   String   @default("#38bdf8")
+  logoUrl          String?
+  heroImageUrl     String?
+  missionText      String?
+  missionImageUrl  String?
+  visionText       String?
+  visionImageUrl   String?
+  objectivesText   String?
+  purposeText      String?
+  organigramUrl    String?
+  managementSystem String?
+  contactEmail     String?
+  website          String?
+  announcements    String[] @default([])
+  values           String[] @default([])
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  users     User[]
+  areas     AreaCompany[]
+  requests  Request[]
+  documents Document[]
+}
+
+model Area {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  icon        String   @default("folder")
+  /// Área transversal del holding (p. ej. Calidad, Jurídica) que atiende a varias empresas
+  isShared    Boolean  @default(false)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  companies   AreaCompany[]
+  members     AreaMember[]
+  forms       RequestForm[]
+  requests    Request[]
+  escalations Escalation[]  @relation("EscTargetArea")
+}
+
+/// Empresas a las que atiende cada área
+model AreaCompany {
+  areaId    String
+  companyId String
+  area      Area    @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@id([areaId, companyId])
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  name         String
+  passwordHash String
+  jobTitle     String?
+  phone        String?
+  avatarUrl    String?
+  role         GlobalRole @default(USER)
+  companyId    String?
+  company      Company?   @relation(fields: [companyId], references: [id])
+  active       Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  memberships         AreaMember[]
+  requestsCreated     Request[]      @relation("Requester")
+  requestsAssigned    Request[]      @relation("Assignee")
+  events              RequestEvent[] @relation("EventActor")
+  notifications       Notification[]
+  escalationsCreated  Escalation[]   @relation("EscRequestedBy")
+  escalationsTargeted Escalation[]   @relation("EscTargetUser")
+  attachments         Attachment[]
+}
+
+model AreaMember {
+  id        String   @id @default(uuid())
+  userId    String
+  areaId    String
+  role      AreaRole @default(MEMBER)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  area      Area     @relation(fields: [areaId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, areaId])
+}
+
+/// Tipo de solicitud (formulario) configurable por el líder del área
+model RequestForm {
+  id              String   @id @default(uuid())
+  areaId          String
+  area            Area     @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  name            String
+  description     String?
+  icon            String   @default("file-text")
+  /// Plazo de respuesta en días hábiles
+  slaDays         Int      @default(5)
+  defaultPriority Priority @default(MEDIUM)
+  /// Definición de campos: [{ id, type, label, placeholder, help, required, options, width }]
+  fields          Json     @default("[]")
+  active          Boolean  @default(true)
+  version         Int      @default(1)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  requests Request[]
+}
+
+model Request {
+  id                String        @id @default(uuid())
+  seq               Int           @unique @default(autoincrement())
+  subject           String
+  formId            String
+  form              RequestForm   @relation(fields: [formId], references: [id])
+  /// Copia de los campos del formulario al momento de radicar (los formularios pueden cambiar)
+  formSnapshot      Json
+  data              Json
+  /// Área que tiene la solicitud actualmente (cambia con los traslados)
+  areaId            String
+  area              Area          @relation(fields: [areaId], references: [id])
+  originAreaId      String
+  companyId         String
+  company           Company       @relation(fields: [companyId], references: [id])
+  requesterId       String
+  requester         User          @relation("Requester", fields: [requesterId], references: [id])
+  assigneeId        String?
+  assignee          User?         @relation("Assignee", fields: [assigneeId], references: [id])
+  status            RequestStatus @default(PENDING_ASSIGNMENT)
+  priority          Priority      @default(MEDIUM)
+  slaDays           Int
+  dueAt             DateTime
+  assignedAt        DateTime?
+  acceptedAt        DateTime?
+  resolvedAt        DateTime?
+  responseText      String?
+  dueSoonNotifiedAt DateTime?
+  overdueNotifiedAt DateTime?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  events        RequestEvent[]
+  attachments   Attachment[]
+  escalations   Escalation[]
+  notifications Notification[]
+  mailLogs      MailLog[]
+
+  @@index([areaId, status])
+  @@index([assigneeId, status])
+  @@index([requesterId])
+  @@index([companyId])
+  @@index([dueAt])
+}
+
+model Attachment {
+  id           String   @id @default(uuid())
+  requestId    String
+  request      Request  @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  /// REQUEST | RESPONSE | COMMENT
+  kind         String   @default("REQUEST")
+  eventId      String?
+  fileName     String
+  url          String
+  mimeType     String?
+  size         Int      @default(0)
+  uploadedById String?
+  uploadedBy   User?    @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+/// Traza completa de la solicitud
+model RequestEvent {
+  id         String    @id @default(uuid())
+  requestId  String
+  request    Request   @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  type       EventType
+  actorId    String?
+  actor      User?     @relation("EventActor", fields: [actorId], references: [id])
+  fromUserId String?
+  toUserId   String?
+  fromAreaId String?
+  toAreaId   String?
+  message    String?
+  /// Nombres al momento del evento: { fromUserName, toUserName, fromAreaName, toAreaName, ... }
+  meta       Json?
+  createdAt  DateTime  @default(now())
+
+  @@index([requestId, createdAt])
+}
+
+model Escalation {
+  id             String           @id @default(uuid())
+  requestId      String
+  request        Request          @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  requestedById  String
+  requestedBy    User             @relation("EscRequestedBy", fields: [requestedById], references: [id])
+  targetType     EscalationTarget
+  targetUserId   String?
+  targetUser     User?            @relation("EscTargetUser", fields: [targetUserId], references: [id])
+  targetAreaId   String?
+  targetArea     Area?            @relation("EscTargetArea", fields: [targetAreaId], references: [id])
+  reason         String
+  status         EscalationStatus @default(PENDING)
+  /// REASSIGNED | TRANSFERRED | REJECTED
+  resolution     String?
+  resolutionNote String?
+  resolvedById   String?
+  createdAt      DateTime         @default(now())
+  resolvedAt     DateTime?
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  requestId String?
+  request   Request? @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  type      String
+  title     String
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, read])
+}
+
+/// Registro de cada correo enviado (traza por correo)
+model MailLog {
+  id        String   @id @default(uuid())
+  requestId String?
+  request   Request? @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  to        String
+  subject   String
+  event     String
+  /// SENT | FAILED | SKIPPED
+  status    String
+  error     String?
+  createdAt DateTime @default(now())
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  /// formatos | procedimientos | politicas | registros | manuales | instructivos | documentos
+  category  String   @default("documentos")
+  process   String?
+  title     String
+  url       String
+  featured  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

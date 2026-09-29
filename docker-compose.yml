@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: playtech-db
+    environment:
+      POSTGRES_USER: playtech
+      POSTGRES_PASSWORD: playtech
+      POSTGRES_DB: playtech_intranet
+    ports:
+      # 5433 en el host para no chocar con otros PostgreSQL locales
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U playtech"]
+      interval: 5s
+      retries: 10
+
+  # Buzón SMTP de pruebas: todos los correos del sistema se ven en http://localhost:8025
+  mail:
+    image: axllent/mailpit:latest
+    container_name: playtech-mail
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  pgdata:
