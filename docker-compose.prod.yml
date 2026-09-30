@@ -1,0 +1,53 @@
+# Despliegue en producción (Dokploy u otro servidor con Docker).
+# El dominio se asigna al servicio "web" en el puerto 80; nginx reenvía /api y /uploads al API.
+# Las variables se definen en la pestaña Environment de Dokploy (o en un .env junto a este archivo).
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-playtech}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-playtech_intranet}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-playtech}"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-playtech}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-playtech_intranet}?schema=public
+      PORT: 3100
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-12h}
+      FRONTEND_URL: ${FRONTEND_URL:?Define FRONTEND_URL}
+      UPLOAD_DIR: uploads
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      MAIL_FROM: ${MAIL_FROM:-Intranet Grupo Playtech <no-reply@grupoplaytech.com>}
+      SLA_DUE_SOON_HOURS: ${SLA_DUE_SOON_HOURS:-24}
+      SLA_OVERDUE_REPEAT_HOURS: ${SLA_OVERDUE_REPEAT_HOURS:-24}
+    volumes:
+      - uploads:/app/uploads
+
+  web:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    expose:
+      - "80"
+
+volumes:
+  pgdata:
+  uploads:
