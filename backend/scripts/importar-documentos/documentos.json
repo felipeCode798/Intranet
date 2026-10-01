@@ -1,0 +1,1571 @@
+{
+  "playtech": [
+    {
+      "title": "PT-GG-PO_1.0 · Politica del Sistema de Gestión Integrado",
+      "url": "https://playtechlatam.sharepoint.com/:b:/s/Calidad/IQCYxcJNhbzyRLNZYnId7dJLATTj0fQ-vIO9RBF10BEqFic?e=sPbqeZ",
+      "category": "politicas",
+      "process": "Gerencia General",
+      "featured": true
+    },
+    {
+      "title": "PT-CA-IN_1.0 · Instructivo para el Plan de Mejoramiento",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQCql06GiD2BQ5wvjRcWSFmWASKM8lcTiLgsk285YcvCZNc?e=ZOUjOY",
+      "category": "instructivos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_2.0 · Plan de Mejora",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQApm7M_t_H-SIFHyCOnqpwpAWCFklnSvDHRp8shWJdN5p4?e=5bQbep",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_3.0 · Formato de Solicitud de Información para el Levantamiento Documental",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQD9habw_0uCRpvisYdGfEKZAStPmZXLyPJJW01SVjkTNG8?e=YSgJLQ",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_4.0 · Evaluación de la Capacitación",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQD4sbm8pSrpQ7HXO9FMCD6SAYfLFK9VBgJAFGBrw5FbR20?e=R8BDvi",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_5.0 · Formato de Acta",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQDrHGc7MpMMQrXw1WaDpfwLAW1RtkjABhFhAH48SKGwUqg?e=HEeL8M",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-IN_6.0 · Instructivo para el diligenciamiento de actas",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQAEoq6WE8kQQI0ktIXHNRtmAeabBPV21xq7skOD559iuAg?e=zJtlOq",
+      "category": "instructivos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-PR_7.0 · Gestión Documental SGI",
+      "url": "https://playtechlatam.sharepoint.com/:b:/s/Calidad/IQAPCRzGLYSURaSj0wq8h9TcAbhcRQL9bUZUBsafKgDypg4?e=6pSrrE",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_8.0 · Matriz DOFA & PESTE",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQAQuUipZsJdRoJ--1OUFTRRAVq4AQK9vFMTdbvAIEv-tb8?e=bT5fUJ",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_9.0 · Control Documental / Listado Maestro",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Gesti%C3%B3n%20Documental/CONTROL%20DOCUMENTAL%20-%20PLAYTECH%202025.xlsx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_10 · Formato/Plantilla para Procedimientos",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQBedEmGpwOuTq2l6YmGmO2aASX3auK4wK0DzpYN_JH1WZY?e=7kQjuS",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-IN_11 · Instructivo para el diligenciamiento de procedimientos del SGC",
+      "url": "https://playtechlatam.sharepoint.com/:b:/s/Calidad/IQC_gkUnR3frSo3tYvpKNcTkAVna-OAGmULR705QLdDKQ8M?e=Rtgs75",
+      "category": "instructivos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-EN_13 · Encuesta de Satisfacción de la Capacitación",
+      "url": "https://forms.cloud.microsoft/r/LDSXX94xZS?origin=lprLink",
+      "category": "formatos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_16 · Formato para Instructivos",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQCPwi_uEMRFSZ9hiY9vHoU3AXE8pquD2AMcRWowr88QWI4?e=cKsAC9",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_17 · Análisis de Contexto Organizacional",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQAobaawkehHQZXP49MjiKzYAZtI1gLhi1A-H_KGr8uTxfY?e=sgbAdK",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": true
+    },
+    {
+      "title": "PT-CA-DO_18 · Alcance del SGI",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQDPlorEK1p6Qqv-w_F34vYeAVPROpSNg_0yVR7W6NmUdjI?e=v5Ulub",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": true
+    },
+    {
+      "title": "PT-CA-CP_20 · Caracterización del Proceso de Calidad",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQBDgvoIYX4KSZ8hlao-xoMTAS66oBh1NOsYmYvfd-rhk4M?e=Rj845M",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_21 · Registro de acciones Correctivas, Preventivas y de Mejora",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQDeQNcOSALYRouWOf6AaH6LAeBpOZBqK1HjyB5QIo7vd4o?e=kmS1JM",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-IN_22 · Instructivo para el diligenciamiento de caracterizaciones de proceso",
+      "url": "https://playtechlatam.sharepoint.com/:b:/s/Calidad/IQAtWDK1hV6DTLYXU5CCV-gCAVWIKRNvcqmRRnx382pJLsI?e=a69SS6",
+      "category": "instructivos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-AD-RE_6.0 · ACTA AUTORIZACIÓN SALIDA DE EQUIPOS PLAYTECH",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQArctxVykuxTaVssTMKrnBLAc35wEuNqy4nlrT8uwYiAsk?e=16eacB",
+      "category": "registros",
+      "process": "Gestión Administrativa",
+      "featured": false
+    },
+    {
+      "title": "PCOR_53 · Reporte Semanal de la Gestión Comercial",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQBFbM47nJOnRIl041TPothVAbB0ojNOqlFC_Q3iZAhjDLw?e=c4UXfp",
+      "category": "registros",
+      "process": "Gestión Comercial",
+      "featured": false
+    },
+    {
+      "title": "PT-CO-RE_1.0 · Orden de Trabajo",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQARBYn9SFMrSZMgwMuHo_ODAagVndNbFGa5QeibT2dfGtk?e=I7UDpp",
+      "category": "registros",
+      "process": "Gestión Comercial",
+      "featured": false
+    },
+    {
+      "title": "PT-CO-RE_2.0 · Factura Proforma (Solo para octoplus)",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQCdPlIbjhvyR6HlPR-wnFGoAXPoEtFuSChK2zxI9I2-0wc?e=lhRKkz",
+      "category": "registros",
+      "process": "Gestión Comercial",
+      "featured": false
+    },
+    {
+      "title": "PT-CO-RE_13 · Formulario Requerimientos del Cliente",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Comercial/04.%20Formatos/PT-CO-RE_13%20FORMULARIO%20REQUERIMIENTOS%20DEL%20CLIENTE1.docx",
+      "category": "registros",
+      "process": "Gestión Comercial",
+      "featured": false
+    },
+    {
+      "title": "PT-CO-RE_15 · Reporte Semanal de la Gestión Comercial",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Comercial/04.%20Formatos/PT-CO-RE_15%20REPORTE%20SEMANAL%20DE%20GESTI%C3%93N%20COMERCIAL.docx",
+      "category": "registros",
+      "process": "Gestión Comercial",
+      "featured": false
+    },
+    {
+      "title": "Instructivo Historias de Usuario (HU)",
+      "url": "https://playtechlatam.sharepoint.com/:b:/s/Calidad/IQBa8VFVF7mKQbRgwcQTu-nUAYRR5AO6ZuxZS0ercsaaXpQ?e=nqTsKG",
+      "category": "instructivos",
+      "process": "Gestión de Proyectos",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PR_1.0 · Protocolo de uso de documentos de políticas de tratamiento de datos personales",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQAVevDR56tlQ6zUM7JapfYJAQtq6kRK--KweEvQTidwMt4?e=kx0zF0",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_2.0 · Política de Tratamiento de la Información y Datos Personales",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQAVevDR56tlQ6zUM7JapfYJAQtq6kRK--KweEvQTidwMt4?e=o8rvSl",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_3.0 · Formato Autorización de Uso de Datos Personales de Menores",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/04.%20Formatos/Playtech/PT-JU-RE_3.0%20%20FORMATO%20AUTORIZACI%C3%93N%20DE%20USO%20DE%20DATOS%20PLAY.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_4.0 · Formato Reclamación Datos Personales",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-JU-RE_4.0%20%20FORMATO%20DE%20RECLAMACION%20PLAY.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_5.0 · Formato Autorización Uso de Datos",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-JU-RE_5.0%20%20FORMATO%20AUTORIZACI%C3%93N%20USO%20DE%20DATOS%20PLAY.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_6.0 · Formato Autorización para la Verificación de la Información",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-JU-RE_6.0%20%20%20FORMATO%20AUTORIZACION%20PARA%20LA%20VERIFICACION%20DE%20LA%20INFORMACION%20PLAY.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_7.0 · Formato Autorización Retroactiva de Uso de Datos",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-JU-RE_7.0%20%20%20FORMATO%20AUTORIZACI%C3%93N%20RETROACTIVA%20DE%20USO%20DE%20DATOS%20PLAY.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_8.0 · Formato Consentimiento Informado Acceso a Historia Clinica General y Ocupacional",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/04.%20Formatos/Playtech/PT-JU-RE_8.0%20%20%20FORMATO%20CONSENTIMIENTO%20INFORMADO%20PLAY.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_9.0 · Política de Privacidad de Playtechnologies S.A.S",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Organizacional/PT-JU-PO_9.0%20POLITICA%20DE%20PRIVACIDAD%20PLAYTECHNOLOGIES%20S.A.S%20(Bien).docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_10 · Términos y Condiciones de Uso Playtechnoogies S.A.S",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Organizacional/PT-JU-PO_10%20T%C3%89RMINOS%20Y%20CONDICIONES%20DE%20USO%20PLAYTECHNOLOGIES%20S.A.S..docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_11 · Política de Privacidad (Producto LISTO)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Listo/PT-JU-PO_11%20POL%C3%8DTICA%20DE%20PRIVACIDAD%20LISTO%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_12 · Política de tratamiento de la información y datos personales - Producto LISTO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Listo/PT-JU-PO_12%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20LA%20INFORMACI%C3%93N%20Y%20DATOS%20PERSONAS%20DEL%20SOFTWARE%20LISTO.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_13 · Términos y Condicones de Uso - Producto LISTO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Listo/PT-JU-PO_13%20T%C3%89RMINOS%20Y%20CONDICIONES%20DE%20USO%20-%20PRODUCTO%20LISTO.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_14 · Política de Privacidad AUDITPLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/AuditPlay/PT-JU-PO_14%20POLITICA%20DE%20PRIVACIDAD%20-%20AUDITPLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_15 · Política de tratamiento de la información y datos personales - Producto AUDITPLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/AuditPlay/PT-JU-PO_15%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20LA%20INFORMACI%C3%93N%20Y%20DATOS%20PERSONALES%20DEL%20SOFTWARE%20AUDITPLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_16 · Términos y Condiciones de Uso del Software AUDITPLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/AuditPlay/PT-JU-PO_16%20TERMINOS%20Y%20CONDICIONES%20DE%20USO%20DEL%20SOFTWARE%20AUDITPLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_17 · Política de Privacidad OCTOPLUS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Octoplus/PT-JU-PO_17%20POLITICA%20DE%20PRIVACIDAD%20OCTOPLUS.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_18 · Política de tratamiento de la información y datos personales - Producto OCTOPLUS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Octoplus/PT-JU-PO_18%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20LA%20INFORMACI%C3%93N%20Y%20DATOS%20PERSONALES%20%E2%80%93%20OCTOPLUS.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_19 · Términos y Condiciones de Uso del Software OCTOPLUS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Octoplus/PT-JU-PO_19%20T%C3%89RMINOS%20Y%20CONDICIONES%20DEL%20SOFTWARE%20OCTOPLUS.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_20 · Política de Privacidad RECARGAME",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Recargame/PT-JU-PO_20%20POL%C3%8DTICA%20DE%20PRIVACIDAD%20RECARGAME%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_21 · Política de tratamiento de la información y datos personales - Producto RECARGAME",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Recargame/PT-JU-PO_21%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20LA%20INFORMACION%20Y%20DATOS%20PERSONANALES%20DEL%20SOFTWARE%20REC%C3%81RGAME.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_22 · Términos y Condiciones de Uso del Software RECARGAME",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Recargame/PT-JU-PO_22%20T%C3%89RMINOS%20Y%20CONDICIONES%20DEL%20SOFTWARE%20-%20REC%C3%81RGAME.pdf.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_23 · Política de Privacidad SMARTPLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/SmartPlay/PT-JU-PO_23%20POLITICA%20DE%20PRIVACIDAD%20SMARTPLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_24 · Política de tratamiento de la información y datos personales - Producto SMARTPLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/SmartPlay/PT-JU-PO_24%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20LA%20INFORMACI%C3%93N%20Y%20DATOS%20PERSONALES%20DEL%20SOFTWARE%20SMARTPLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_25 · Términos y Condiciones de Uso del Software SMARTPLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/SmartPlay/PT-JU-PO_25%20T%C3%89RMINOS%20Y%20CONDICIONES%20DEL%20SOFTWARE%20SMARTPLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_26 · POLÍTICA DE BIENESTAR CORPORATIVO DE PROTECCIÓN Y BENEFICIOS PARA ACCIONISTAS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-JU-PO_26%20%20POLITICA%20%20DE%20BIENESTAR%20CORPORATIVO%20%20PARA%20ACCIONISTAS%20PLAYTECH.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_27 · TÉRMINOS Y CONDICIONES DE USO DEL SOFTWARE “DIRECTORY PLUS”",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Directory/PT-JU-PO_27%20T%C3%89RMINOS%20Y%20CONDICIONES%20DEL%20SOFTWARE%20DIRECTORY%20PLUS.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_28 · POLÍTICA DE TRATAMIENTO DE DATOS DIRECTORY PLUS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Directory/PT-JU-PO_28%20POLITICA%20DE%20TRATAMIENTO%20DE%20DATOS%20DIRECTORY%20PLUS.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_29 · POLÍTICA DE PRIVACIDAD DIRECTORY PLUS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Playtech/Directory/PT-JU-PO_29%20POLITICA%20DE%20PRIVACIDAD%20%E2%80%93%20DIRECTORY%20PLUS.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_30 · REGLAMENTO DE TRABAJO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Documentos%20compartidos/REGLAMENTO%20INTERNO%20DE%20TRABAJO%20PT-JU-PO_30%20-%20copia%201.docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-RE_31 · OTROSÍ AL CONTRATO LABORAL POR CAMBIO DE MODALIDAD",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-JU-RE_31%20%20Otro%20Si%20contrato%20de%20trabajo%20remoto%20-%20cambio%20de%20modalidad.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_32 · POLITICA DE DESCONEXIÓN LABORAL",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/POLITICA%20DESCONEXI%C3%93N%20LABORAL%20PT-JU-PO_32%20%5BV%201.0%5D.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_33 · POLITICA DE TELETRABAJO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/POLITICA%20DE%20TELETRABAJO%20PT-JU-PO_33%20%5BV%201.0%5D.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_34 · AUTORIZACIÓN PARA EL TRATAMIENTO DE DATOS PERSONALES APLICATIVO CONTROL DE ACCESO PLAY",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/06.%20Documentos%20Obsoletos/PT-JU-PO_34%20AUTORIZACI%C3%93N%20PARA%20EL%20TRATAMIENTO%20DE%20DATOS%20PERSONALES%20APLICATIVO%20CONTROL%20DE%20ACCESO%20PLAY%20.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "PT-JU-PO_35 · TÉRMINOS Y CONDICIONES DE USO Y POLÍTICA DE PRIVACIDAD ACTUALIZACIÓN CORPORATIVA 2026",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/06.%20Documentos%20Obsoletos/PT-JU-PO_35%20T%C3%89RMINOS%20Y%20CONDICIONES%20DE%20USO%20Y%20POL%C3%8DTICA%20DE%20PRIVACIDAD%20ACTUALIZACI%C3%93N%20CORPORATIVA%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "Seguimiento y evaluación de la inducción",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/SEGUIMIENTO%20Y%20EVALUACI%C3%93N%20DE%20LA%20INDUCCI%C3%93N%20-%20PLAYTECH.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Retiro de Cesantias",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/RETIRO%20DE%20CESANT%C3%8DAS.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Otro si al Contrato Laboral",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/OTROS%C3%8D%20AL%20CONTRATO%20LABORAL.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Formato de requerimiento personal",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/Formato_Requerimiento_Personal.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Examén medico de egreso",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/EXAM%C3%89N%20M%C3%89DICO%20DE%20EGRESO.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Check List - Desvinculación del Personal",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/CHECKLIST%20%E2%80%93%20DESVINCULACI%C3%93N%20DEL%20PERSONAL.xlsx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Certificado Laboral",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/CERTIFICADO%20LABORAL.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Carta de Aceptación del Personal",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/CARTA%20DE%20ACEPTACI%C3%93N%20DE%20RENUNCIA.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Carta de Entrega del Cargo de Puesto",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/ACTA%20-%20ENTREGA%20DEL%20CARGO%20PUESTO.xlsx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Evaluación de Desempeño",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/EVALUACI%C3%93N%20DE%20DESEMPE%C3%91O.xlsx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Membretes grupo Play",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/MEMBRETE%20DE%20GRUPOPLAY",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Manuales de Funciones",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Manuales/PT-TH-MA_2.0%20M.%20F%20PLAYTECH%202026.xlsx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Macro GTH",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/02.%20Procedimientos/Playtech/PROCEDIMIENTO%20MACRO%20GTH%202026.docx",
+      "category": "procedimientos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Selección Y Contratación Del Talento Humano",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/02.%20Procedimientos/Playtech/PROCEDIMIENTO%20DE%20SELECCI%C3%93N%20Y%20CONTRATACI%C3%93N%20DEL%20TALENTO%20HUMANO.docx",
+      "category": "procedimientos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Inducción Playtech",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/02.%20Procedimientos/Playtech/PROCEDIMIENTO%20DE%20INDUCCI%C3%93N%20PLAYTECH.docx",
+      "category": "procedimientos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Desvinculación del Personal (Actualizado)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/02.%20Procedimientos/Playtech/Procedimiento%20de%20Desvinculaci%C3%B3n%20del%20Personal%20(Actualizado).docx",
+      "category": "procedimientos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Contratación de Planta y Prestación de Servicio",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/02.%20Procedimientos/Playtech/Procedimiento%20de%20Contrataci%C3%B3n%20de%20Planta%20y%20Prestaci%C3%B3n%20de%20Servicio.docx",
+      "category": "procedimientos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Evaluación de Desempeño",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/PDIR_005%20%20%20EVALUACI%C3%93N%20DE%20DESEMPE%C3%91O.xlsx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Evaluación De Desempeño Playtech",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/02.%20Procedimientos/Playtech/PROCEDIMIENTO%20PARA%20LA%20EVALUACI%C3%93N%20DE%20DESEMPE%C3%91O%20PLAYTECH.docx",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "PT-TH-RE_24 · Descuento por nómina",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQCmfNWtTzHVTb1ZneOdsFyEAVsdiXyGZUvo9xnrZLj1HL0?e=M9cvX2",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "PT-LO-RE_1.0 · Acta de Asignación del Activo Fijo al Colaborador",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Logstica/04.%20Formatos/PT-LO-RE_1.0%20%20%20ACTA%20DE%20ASIGNACI%C3%93N%20DE%20ACTIVO%20FIJO%20AL%20COLABORADOR.docx",
+      "category": "registros",
+      "process": "Gestión Logística",
+      "featured": false
+    },
+    {
+      "title": "PT-LO-RE_2.0 · Acta de Entrega de Activos Fijos a la Empresa",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Logstica/04.%20Formatos/PT-LO-RE_2.0%20%20%20ACTA%20DE%20ENTREGA%20DE%20ACTIVOS%20FIJOS%20A%20LA%20EMPRESA.docx",
+      "category": "registros",
+      "process": "Gestión Logística",
+      "featured": false
+    },
+    {
+      "title": "PT-LO-RE_3.0 · Acta de Solicitud de Activos Fijos a la Empresa",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Logstica/04.%20Formatos/PT-LO-RE_3.0%20%20%20ACTA%20SOLICITUD%20DE%20ACTIVOS%20FIJOS%20A%20LA%20EMPRESA.docx",
+      "category": "registros",
+      "process": "Gestión Logística",
+      "featured": false
+    },
+    {
+      "title": "PT-LO-RE_4.0 · Acta de Baja de Activos Fijos a la Empresa",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-LO-RE_4.0%20%20ACTAS%20BAJA%20DE%20ACTIVOS%20FIJOS%20A%20LA%20EMPRESA.docx",
+      "category": "registros",
+      "process": "Gestión Logística",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-PO_1.0 · POLÍTICA DE ALCOHOL Y DROGAS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Listado%20Maestro/PT-SS-PO_1.0%20%20POL%C3%8DTICA%20DE%20ALCOHOL%20Y%20DROGAS%20-%20PLAY%20VERSI%C3%93N%201.1.docx",
+      "category": "politicas",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_2.0 · SEGUIMIENTO A RECOMENDACIONES Y/O RESTRICCIONES MÉDICO LABORALES",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/PT-SS-RE_2.0%20SEGUIMIENTO%20A%20RECOMENDACIONES%20Y-O%20RESTRICCIONES%20M%C3%89DICO%20LABORALES.xlsx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_3.0 · ACTA ENTREGA DE CONCEPTO MEDICO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/PT-SS-RE_3.0%20ACTA%20ENTREGA%20DE%20CONCEPTO%20M%C3%89DICO.docx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_4.0 · MATRIZ DE SEGUIMIENTO A RECOMENDACIONES Y/O RESTRICCIONES",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/PT-SS-RE_4.0%20MATRIZ%20DE%20SEGUIMIENTO%20A%20RECOMENDACIONES%20Y%20RESTRICCIONES.xlsx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-PR_5.0 · PROCEDIMIENTOS EXAMENES MEDICOS OCUPACIONALES",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/02.Procedimiento/Playtech/PT-SS-PR_5.0%20PROCEDIMIENTOS%20EXAMENES%20MEDICOS%20OCUPACIONALES.docx",
+      "category": "procedimientos",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_7.0 · LISTADO DE ASISTENCIA INTEGRAL - SST",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/PT-SS-RE_7.0%20LISTADO%20DE%20ASISTENCIA%20INTEGRAL%20-%20SST.xlsx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_8.0 · ACTA CONFORMACIÓN COMITÉ COPASST",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQDU9iBdCTnkQZ2I8s9AvjPFAXcKBdQRtaJRfVoU-evFwUE?e=pPcjcC",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_9.0 · ACTA CONSTITUCION COMITE CONVIVENCIA PLAYTECH",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQCKbDT1NOHLQImImcdG5kW1AZQWPryc5b88R2u8BTjJdZQ?e=5Gevsi",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_10 · ACTA DE REUNIÓN COMITÉ COPASST",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQBpMMiJY33YTriuaD8TL7ZjAb_PD2oSjmiRMlk_Gq339fU?e=j2aeC0",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_11 · FORMATO PAUSAS ACTIVAS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/PT-SS-RE_11%20Formato%20Registro%20Pausas%20Activas%20-%20PLAYTECH.docx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SS-RE_12 · PROCEDMIENTO DE AUTORREPORTE DE CONDICIONES DE TRABAJO",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQCnZDmP02vOSayGCm1vKL7WAWsq2BcT_nuWmO3Wc0Lsz70?e=f5mkLK",
+      "category": "procedimientos",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "PT-SC-PR_1.0 · Procedimiento de Monitoreo, Análisis y Mejora del SAC",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Servicio%20al%20Cliente%20SAC/02.%20Procedimientos/PT-SC-PR_1.0%20PROCEDIMIENTO%20DE%20MONITOREO,%20ANALISIS%20Y%20MEJORA%20DEL%20SAC.docx",
+      "category": "procedimientos",
+      "process": "SAC",
+      "featured": false
+    },
+    {
+      "title": "PT-SC-PR_2.0 · Eliminación BD inactivas LISTO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Servicio%20al%20Cliente%20SAC/02.%20Procedimientos/PT-SC-RE_2.0%20PROCEDIMIENTO%20ELIMINACI%C3%93N%20BD%20INACTIVAS-LISTO.docx",
+      "category": "procedimientos",
+      "process": "SAC",
+      "featured": false
+    },
+    {
+      "title": "PT-SC-RE_3.0 · Cronograma de eliminación BD Inactivas LISTO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Comercial/04.%20Formatos/PT-SC-RE_3.0%20CRONOGRAMA%20EJECUCI%C3%93N%20PROC.%20ELIM.%20BD.%20LISTO.xlsx",
+      "category": "registros",
+      "process": "SAC",
+      "featured": false
+    },
+    {
+      "title": "Procedimiento de Acciones Correctivas, Preventivas y de Mejora (ACPM)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Procedimiento/ACPM/PROCEDIMIENTO%20ACPM.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Procedimiento de Auditoría Interna",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Procedimiento/Auditor%C3%ADa%20Interna/PROCEDIMIENTO%20AUDITORIA%20INTERNA.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Procedimiento de Mejoras y Mejora Continua",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Procedimiento/Mejora%20Continua/PROCEDIMIENTO%20DE%20MEJORAS%20Y%20MEJORA%20CONTINUA.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Programa Anual de Auditorías Internas",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Auditor%C3%ADa%20Interna/PT_CA_Programa_Anual_de_Auditorias_Internas.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Acta de Apertura de Auditoría",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Auditor%C3%ADa%20Interna/PT_CA_Acta_de_Apertura_de_Auditoria.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Acta de Cierre de Auditoría",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Auditor%C3%ADa%20Interna/PT_CA_Acta_de_Cierre_de_Auditoria.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Informe de Auditoría Interna",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Auditor%C3%ADa%20Interna/PT_CA_Informe_de_Auditoria_Interna.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Política de Gestión de Cambios",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Pol%C3%ADticas/GESTI%C3%93N%20DEL%20CAMBIO/POL%C3%8DTICA%20GESTI%C3%93N%20DE%20CAMBIOS.docx",
+      "category": "politicas",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Política Integrada Playtech",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Pol%C3%ADticas/POLITICA%20INTEGRADA%20SGI/POL%C3%8DTICA%20INTEGRADA%20PLAYTECH.docx",
+      "category": "politicas",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-RE_12 · Matriz de Partes Interesadas Playtech",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Partes%20Interesadas%20Playtech/PT-CA-RE_12%20-Matriz%20de%20Partes%20Interesadas-PlayTech.xlsx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Mapa de Procesos Playtech",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Mapa%20de%20procesos%20Playtech/PlayTechMP%20(2).html",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-GE-DO_3.0 · Organigrama Unificado Corporativo Play Technologies 2026",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Organigrama%20Final%20Playtech/Organigrama_Unificado_Playtech_2026.html",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": true
+    },
+    {
+      "title": "PT_SI_DO_01 · Manual de Políticas de Seguridad de la Información",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Pol%C3%ADticas/MANUAL%20DE%20POL%C3%8DTICAS/PT_SI_DO_01%20Manual%20Politicas%20Seguridad%20Informacion.docx",
+      "category": "manuales",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-CP_1.0 · Caracterización del Proceso de Gestión Integrado de la Calidad (archivo de trabajo)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Caracterizaci%C3%B3n/Caracterizacion_SGI_Calidad.xlsx",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "PT-CA-PR_7.0 · Procedimiento Gestión Documental V1.2 (archivo en carpeta Calidad)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Procedimiento/Gesti%C3%B3n%20Documental/2026/PT-CA-PR_7.0%20Procedimiento%20Gesti%C3%B3n%20Documental%20%5BV1.2%5D%20Actualizado.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    }
+  ],
+  "enigma": [
+    {
+      "title": "EN-GG-PO_1.0 · Política del Sistema de Gestión Integrado",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQArL3mF7FVCRYUFxoRcuoZwAZEmDTJz9zkD5kqndlcp9Xw?e=cH7P3G",
+      "category": "politicas",
+      "process": "Gerencia General",
+      "featured": true
+    },
+    {
+      "title": "EN-CA-RE_1.0 · Matriz DOFA & PESTEL",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20APROBADOS/ANALISIS%20DE%20CONTEXTO/EN-CA-RE_1.0%20%20DOFA-PESTEL%20ENIGMA.xlsx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "EN-CA-RE_2.0 · Análisis de Contexto Organizacional",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20APROBADOS/ANALISIS%20DE%20CONTEXTO/EN-CA-RE_2.0%20AN%C3%81LISIS%20DE%20CONTEXTO%20ORGANIZACIONAL%20-ENIGMA.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": true
+    },
+    {
+      "title": "EN-CA-DO_3.0 · Alcance del SGI",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20APROBADOS/ALCANCE%20SGI/EN-CA-DO_3.0%20ALCANCE%20DEL%20SGI%20-%20ENIGMA.docx",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": true
+    },
+    {
+      "title": "EN-CA-RE_10 · Matriz de Partes Interesadas",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20APROBADOS/PARTES%20INTERESADAS/EN-CA-RE_10%20Matriz%20de%20Partes%20Interesadas-Enigma.xlsx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "EN-CA-PR-19 · Procedimiento de solicitud CAE - SGI",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/CALIDADENIGMA/GESTI%C3%93N%20DOCUMENTAL%202025/EN-CA-PR_19%20PROCEDIMIENTO%20SOLICITUD%20CAE%20-%20SGI%20ENIGMA.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": true
+    },
+    {
+      "title": "EN-CA-RE_20 · Solicitud de Creación, Actualización o Eliminación de Documentos del SGI",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/CALIDADENIGMA/GESTI%C3%93N%20DOCUMENTAL%202025/EN-CA-RE_20%20Solicitud%20CAE%20%20de%20Documentos%20del%20SGI%20Enigma.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PR_1.0 · Protocolo de Uso de Documentos de Política de Tratamiento de Datos Personales",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-PR_1.0%20%20PROTOCOLO%20DE%20USO.docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_2.0 · Política de Tratamiento de la Información y Datos Personales de Enigma Developers SAS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_2.0%20POLITICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PLAY.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RE_3.0 · Formato Autorización de Uso de Datos Personales de Menores",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-RE_3.0%20%20AUTORIZACI%C3%93N%20USO%20DE%20DATOS%20PERSONALES%20MENORES.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RE_4.0 · Formato Reclamación Datos Personales",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-RE_4.0%20%20FORMATO%20RECLAMACION.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RE_5.0 · Formato Autorización de Uso de Datos Personales",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-RE_5.0%20%20AUTORIZACI%C3%93N%20USO%20DE%20DATOS%20PERSONALES.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RE_6.0 · Formato Autorización para la Verificación de la Información",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-RE_6.0%20%20%20AUTORIZACION%20VERIFICACION%20INFORMACION.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RE_7.0 · Formato Autorización Retroactiva de Uso de Datos",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-RE-7.0%20%20FORMATO%20AUTORIZACION%20RETROACTIVA%20DE%20USO%20DE%20DATOS.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RE_8.0 · Formato Consentimiento Informado Acceso a Historia Clínica General y Ocupacional",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-RE_8.0%20%20CONSENTIMIENTO%20INFORMADO.docx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_9.0 · Política de Privacidad Enigma",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_9.0%20POL%C3%8DTICA%20DE%20PRIVACIDAD%20ENIGMA%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-GU_10 · Guía de Protección de Datos Personales y Medidas de Seguridad",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/EN-JU-GU_10.0%20%20GU%C3%8DA%20DE%20PROTECCI%C3%93N%20DE%20DATOS%20PERSONALES.docx",
+      "category": "instructivos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_11 · Terminos y Condiciones de Uso",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_11%20TERMINOS%20Y%20CONDICIONES%20ENIGMA%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_12 · Política de Privacidad Enigma APP",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_12%20-%20POLITICA%20DE%20PRIVACIDAD%20ENIGMA%20APP%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_13 · Política de tratamiento de la Información y Datos Personales Enigma APP",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_13%20-%20POLITICA%20DE%20TRATAMIENTO%20DE%20DATOS%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PR_14 · Protocolo de Uso de Documentos de Política de Tratamiento de Datos Personales Enigma APP",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/PRODUCTO%20ENIGMA%20APP/EN-JU-PR_14.0%20%20PROTOCOLO%20DE%20USO%20DE%20DOCUMENTOS%20DE%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES%20(ENIGMA%20APP).docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_15 · Términos y Condiciones de Uso Enigma APP",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_15%20TERMINOS%20Y%20CONDICIONES%20DE%20ENIGMA%20APP%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_16 · Política de Privacidad Enigma EDUCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_16%20-%20POLITICA%20DE%20PRIVACIDAD%20ENIGMA%20EDUCA%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_17 · Política de Tratamiento de la Información y Datos Personales Enigma EDUCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_17%20POLITICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES%20ENIGMA%20EDUCA%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PR_18 · Protocolo de Uso de Documentos de Política de Tratamiento de Datos Personales",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/PRODUCTO%20ENIGMA%20EDUCA/EN-JU-PR_18.0%20%20PROTOCOLO%20DE%20USU%20DE%20DOCUMENSTOS%20POL%C3%8DTICAS%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES%20(ENIGMA%20EDUCA).docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_19 · Términos y Condiciones de Uso Enigma EDUCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_19%20TERMINOS%20Y%20CONDICIONES%20DENIGMA%20EDUCA%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_20 · Política de privacidad Enigma REGISTRO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_20%20-%20POL%C3%8DTICA%20DE%20PRIVACIDAD%20ENIGMA%20REGISTRO%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_21 · Política de Tratamiento de la Información y Datos Personales Enigma REGISTRO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_21%20POL%C3%8DTICA%20TRATAMIENTO%20DE%20DATOS%20PERSONALES%20ENIGMA%20REGISTRO%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PR_22 · Protocolo de Uso de Documentos de Política de Tratamiento de Datos Personales Enigma REGISTRO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/PRODUCTO%20ENIGMA%20REGISTRO/EN-JU-PR_22.0%20%20PROTOCOLO%20DE%20USO%20DE%20DOCUMENTOS%20DE%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES_ENIGMA%20REGISTRO.docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_23 · Términos y Condiciones de Uso Enigma REGISTRO",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_23%20TERMINOS%20Y%20CONDICIONES%20ENIGMA%20REGISTRO%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_24 · Política de Privacidad GMV (Smart sale)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_24%20-%20POLITICA%20DE%20PRIVACIDAD%20GMV%20GESTION%20MOVIL%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_25 · Política de Tratamiento de la Información y Datos Personales GMV (Smart sale)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_25%20POLITICA%20DE%20TRATAMIENTO%20DE%20DATOS%20GMV%20GESTION%20MOVIL%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PR_26 · Protocolo de Uso de Documentos de Política de Tratamiento de Datos Personales. (APLICATIVO GESTIÓN MÓVIL)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/PRODUCTO-%20GESTION%20MOVIL/PROTOCOLO%20DE%20USO%20DE%20DOCUMENTOS%20DE%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES_GESTION%20MOVIL_.docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_27 · Términos y Condiciones de Uso GMV (Smart sale)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_27%20TERMINOS%20Y%20CONDICIONES%20DE%20GMV%20GESTION%20MOVIL%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_28 · Política de Privacidad NFC (Care Task)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_28%20-%20POLITICA%20DE%20PRIVACIDAD%20NFC%20CARE%20STACK%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_29 · Política de Tratamiento de la Información y Datos Personales (Care Task)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_29%20POLITICA%20DE%20TRATAMIENTO%20DE%20DATOS%20NFC%20CARE%20STACK%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PR_30 · Protocolo de Uso de Documentos de Política de Tratamiento de Datos Personales NFC Care Task",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/POLITICAS%20ENIGMA/ENIGMA/PRODUCTO%20NFC-CARE%20TASK/EN-JU-PR_30.0%20%20PROTOCOLO%20DE%20USO%20DE%20DOCUMENTOS%20DE%20POL%C3%8DTICA%20DE%20TRATAMIENTO%20DE%20DATOS%20PERSONALES_NFC_.docx",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-PO_31 · Términos y Condiciones de Uso NFC Care Task",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20Jurdica/08.%20Politicas/Enigma/EN-JU-PO_31%20TERMINOS%20Y%20CONDICIONES%20DE%20NFC%20CARE%20STACK%202026.docx",
+      "category": "politicas",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-JU-RG_32 · Reglamento Interno de Trabajo",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/JURDICOENIGMA/Reglamento%20Interno%20de%20Trabajo/RIT%20ENIGMA%202025.pdf",
+      "category": "documentos",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "EN-TH-RE_24 · Descuento por nómina",
+      "url": "https://playtechlatam.sharepoint.com/:x:/s/Calidad/IQCmfNWtTzHVTb1ZneOdsFyEAVsdiXyGZUvo9xnrZLj1HL0?e=M9cvX2",
+      "category": "registros",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "EN-CT-PR_1.0 · Ciclo de Ingresos",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Direccin%20Admisnitrativa/Proceso%20Contable/EN-CT-PR_1.0%20PROCEDIMIENTO%20DEL%20CICLO%20DE%20INGRESOS.docx",
+      "category": "procedimientos",
+      "process": "Gestión Contable",
+      "featured": false
+    },
+    {
+      "title": "EN-SS-PO_1.0 · POLÍTICA DE ALCOHOL Y DROGAS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/08.%20Politicas/EN-SS-PO_1.0%20%20POLITICA%20DE%20ALCOHOL%20Y%20DROGAS%20-%20ENIGMA%20VERSI%C3%93N%201.0.docx",
+      "category": "politicas",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "EN-SS-RE_2.0 · ACTA DE REUNIÓN COMITE DE CONVIVENCIA LABORAL",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/EN-SS-PO_2.0%20ACTA%20DE%20REUNI%C3%93N%20COMIT%C3%89%20DE%20CONVIVENCIA%20LABORAL.docx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "EN-SS-RE_8.0 · ACTA CONFORMACIÓN COMITÉ COPASST",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQCjPWk7I9SzTpYTyazZ6-3TASP58AAIYIo5zraq0LTMJN0?e=8lNWH3",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "EN-SS-RE_9.0 · ACTA CONSTITUCIÓN COMITÉ CONVIVENCIA LABORAL",
+      "url": "https://playtechlatam.sharepoint.com/:w:/s/Calidad/IQAbFz-YSJaVRapzD5w2WEaTAWWGDZxK1qYYgw5GwzhYpd0?e=sXuy99",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "EN-SS-RE_11 · FORMATO REGISTRO PAUSAS ACTIVAS",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/EN-SS-RE_11%20Formato%20Registro%20Pausas%20Activas%20-%20ENIGMA.docx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "GCR_009 · Matriz de Comunicación – Procesos Estratégicos",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ENIGMA%20S.A.S/GCR_009%20%20%20MC%20-%20P_Estrat%C3%A9gicos.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "GCR_009 · Matriz de Comunicación – Proceso Comercial",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ENIGMA%20S.A.S/GCR_009%20%20%20MC%20-%20P_Comercial.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "GCR_009 · Matriz de Comunicación – Tecnología y Operaciones",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ENIGMA%20S.A.S/GCR_009%20%20%20MC%20-%20P_Tecnolog%C3%ADa%20y%20Operaciones.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "GCR_009 · Matriz de Comunicación – Proyectos e Innovación",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ENIGMA%20S.A.S/GCR_009%20%20%20MC%20-%20P_Proyectos%20e%20Innovaci%C3%B3n.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "GCR_009 · Matriz de Comunicación – Proceso de Soporte",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ENIGMA%20S.A.S/Soporte/Registro/GCR_009%20%20%20MC%20-%20P_Soporte.docx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "EDR_007 · Matriz de Riesgos y Oportunidades Enigma",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Documentos%20de%20Procesos/EDR_007%20%20%20MATRIZ%20DE%20RIESGOS%20ENIGMA%20(1).xlsx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "EDR_009 · Normograma Enigma (25/03/2026)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/02.%20SISTEMA%20DE%20GESTI%C3%93N%20INTEGRAL/MATRIZ%20LEGAL/EDR_009%20NORMOGRAMA%20ENIGMA%2025032026.xlsx",
+      "category": "registros",
+      "process": "Gestión Jurídica",
+      "featured": false
+    },
+    {
+      "title": "ETR-001 · Caracterización Gestión del Desarrollo",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/02.%20SISTEMA%20DE%20GESTI%C3%93N%20INTEGRAL/Caracterizaci%C3%B3n%20Procesos/Caracterizaci%C3%B3n%20Gestion%20Desarrollo%20Enigma.xlsx",
+      "category": "documentos",
+      "process": "Gestión de Desarrollo",
+      "featured": false
+    },
+    {
+      "title": "PA-02 · Caracterización del Proceso de Gestión Financiera",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/02.%20SISTEMA%20DE%20GESTI%C3%93N%20INTEGRAL/Caracterizaci%C3%B3n%20Procesos/Caracterizaci%C3%B3n%20Proceso%20Gestion%20Financiera%20(Enigma).xlsx",
+      "category": "documentos",
+      "process": "Gestión Financiera",
+      "featured": false
+    },
+    {
+      "title": "ECM_008 · Procedimiento Gestión del Riesgo",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/02.%20SISTEMA%20DE%20GESTI%C3%93N%20INTEGRAL/GESTI%C3%93N%20DEL%20RIESGO/ECM_008%20%20%20PROCEDIMIENTO%20GESTI%C3%93N%20DEL%20RIESGO.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "ESSM_010 · Procedimiento Exámenes Médicos Ocupacionales (Enigma) 2026",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/02.Procedimiento/Enigma/ESSM_010%20PROCEDIMIENTOS%20EXAMENES%20MEDICOS%20OCUPACIONALES%20(ENIGMA)%202026.docx",
+      "category": "procedimientos",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "ETHM_003 · Procedimiento de Desvinculación del Personal – Enigma",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/02.Procedimiento/Enigma/ETHM_003%20%20%20PROCEDIMIENTO%20DE%20DESVINCULACI%C3%93N%20DEL%20PERSONAL%20-%20ENIGMA.docx",
+      "category": "procedimientos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "ESSR_019 · Acta Entrega Concepto Médico Enigma",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/ESSR_019%20ACTA%20ENTREGA%20CONCEPTO%20MEDICO%20ENIGMA.docx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "EN_SI_FO_002 · Inventario de Activos de Información – Enigma",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20A%20REVISAR%20(COMIT%C3%89)/MATRIZ%20ACTIVOS%20DE%20LA%20INFORMACI%C3%93N/EN_SI_FO_002_Inventario_Activos_Informacion_Enigma.xlsx",
+      "category": "registros",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "EN_SI_GU_01 · Guía de Levantamiento de Activos de Información",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/02.%20SISTEMA%20DE%20GESTI%C3%93N%20INTEGRAL/MATRIZ%20ACTIVOS%20TI/EN_SI_GU_01-Guia%20Levantamiento%20Activos%20de%20Informacion.docx",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Política Integrada Enigma Developers S.A.S. BIC (propuesta en revisión)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20A%20REVISAR%20(COMIT%C3%89)/POL%C3%8DTICAS/Politica%20Integrada%20Enigma.docx",
+      "category": "politicas",
+      "process": "Gerencia General",
+      "featured": false
+    },
+    {
+      "title": "Mapa de Procesos Enigma (aprobado)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Comit%20Estratgico%20del%20SIC/03.%20DOCUMENTACI%C3%93N%20DEL%20SIG/DOCUMENTOS%20APROBADOS/MAPA%20DE%20PROCESOS/EnigmaMP.html",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    },
+    {
+      "title": "Informe de Implementación ISO 9001 Enigma – 1er semestre 2024",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/PLAYTECHNOLOGIES%20S.A.S/Calidad/Informes/Enigma/INFORME%20IMPLEMENTACI%C3%93N%20ISO%209001%20-%201er%20SEMESTRE%202024.docx",
+      "category": "documentos",
+      "process": "Gestión de Calidad",
+      "featured": false
+    }
+  ],
+  "orca": [
+    {
+      "title": "OR-TI-PR-00 · Procedimiento de incidentes de infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Proc%20Indicentes/OR-TI-PR-00_V2_Procedimiento%20incidentes%20de%20infraestructura.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": true
+    },
+    {
+      "title": "OR-TI-PR-01 · Procedimiento de backup y restauración de servidores",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Backups/OR-TI-PR-01-V2_PROCEDIMIENTO_BACKUP_Y_RESTAURACION_SERVIDORES.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-02 · Procedimiento de gestión de monitoreo y escalamiento de soporte",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Monitoreo/OR-TI-PR-02-V2-Procedimiento_Gestion_Monitoreo_y_Escalamiento_de%20Soporte.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-03 · Procedimiento de gestión de usuarios de infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Gestion%20de%20usuarios/OR-TI-PR-03-V1_Procedimiento_Gestion_Usuarios_Infraestructura_ORCAIT.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-04 · Procedimiento de gestión de capacidad y disponibilidad de infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Gestion%20de%20capacidad%20de%20infraestructura/OR-TI-PR-04-V1_Procedimiento_Gestion_de_Capacidad_Disponibilidad_Infraestructura_ORCAIT.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-05 · Procedimiento de gestión de vulnerabilidades",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Gestion%20de%20Vulnerabilidades/OR-TI-PR-05_Procedimiento_Gestion_de_Vulnerabilidades_ORCAIT.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-06 · Procedimiento de continuidad de negocio para servicios críticos de infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Continuidad%20de%20Negocio/OR-TI-PR-06-V1_Procedimiento_Continuidad_de_Negocio_para_Servicios_Criticos_de_Infraestructura_ORCAIT.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-07 · Procedimiento de gestión de cambios",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Gestion%20de%20cambio/OR-TI-PR-07-V1_Procedimiento_Gestion_de%20Cambios.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-08 · Procedimiento de monitoreo, correlación y gestión de incidentes de seguridad",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Monitoreo%20y%20correlacion%20de%20eventos/OR-TI-PR-08-V1_Procedimiento_de_monitoreo_correlaci%C3%B3n_gestion_incidentes_seguridad.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PR-09 · Procedimiento de gestión y actualización de guías de hardening",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/PROCEDIMIENTOS/Procedimientos/Infraestructura/Hardening/OR-TI-PR-09-V1_Procedimiento%20de%20gestion%20y%20actualizacion%20de%20guias%20de%20hardening.docx",
+      "category": "procedimientos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-PO-01 · Política de seguridad de la información",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/POLITICA%20DE%20SEGURIDAD%20IT/OR-TI-PO-01-V1_Politica_de_seguridad_de_la_informacion.docx",
+      "category": "politicas",
+      "process": "Gestión de Infraestructura IT",
+      "featured": true
+    },
+    {
+      "title": "OR-TI-MT-00 · Matriz de incidencias de servidores",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/MATRIZ/Incidentes%20servidores/OR-TI-MT-00-V1_Matriz%20Incidencias%20Servidores.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-MT-01 · Matriz de escalamiento de soporte",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/MATRIZ/Escalamiento%20soporte/OR-TI-MT-01-V1_Matriz_Escalamiento_Soporte.pdf",
+      "category": "documentos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-FO-03 · Informe de incidentes",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/FORMATOS/Incidentes/OR-TI-FO-03-V1_Informe_De_Incidentes_OrcaIT.docx",
+      "category": "formatos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-FO-06 · Informe de gestión",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/FORMATOS/Informe%20de%20gestion/OR-TI-FO-06_V1_Informe_de_gesti%C3%B3n.docx",
+      "category": "formatos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "TI-FO-01 · Informe mensual de disponibilidad de infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/FORMATOS/Informe%20de%20disponibilidad/TI-FO-01-V00-Informe%20de%20disponibilidad%20de%20infraestructura-%5BNOMBREDELPRODUCTO%5D-%5BMES-2026%5D.docx",
+      "category": "formatos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "TI-FO-01 · Formato de gestión de usuarios de infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/FORMATOS/Gestion%20de%20usuarios/TI-FO-01_Formato_Gestion_Usuarios_Infraestructura.docx",
+      "category": "formatos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "TI-FO-00 · Formato de solicitud de gestión del servicio de VPN",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/FORMATOS/Gestion%20de%20usuarios/TI-FO-00_Formato%20de%20solicitud%20de%20gestion%20servicio%20de%20VPN.docx",
+      "category": "formatos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-IV-00 · Inventario de infraestructura OVH",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/INVENTARIO%20DE%20INFORMACI%C3%93N/OR-TI-IV-00-V1_Inventario%20Infraestructura%20OVH.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-IV-01 · Inventario de infraestructura Todomas",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/INVENTARIO%20DE%20INFORMACI%C3%93N/OR-TI-IV-01-V1_Inventario%20Infraestructura%20Todomas.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-IV-02 · Inventario de infraestructura Recárgame",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/INVENTARIO%20DE%20INFORMACI%C3%93N/OR-TI-IV-02-V1_Inventario%20Infraestructura%20Recargame.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "OR-TI-IV-03 · Inventario de infraestructura Enigma",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/INVENTARIO%20DE%20INFORMACI%C3%93N/OR-TI-IV-03-V1_Inventario%20Infraestructura%20Enigma.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "PT_SI_FO_002 · Inventario de activos de información – Infraestructura",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/INVENTARIO%20DE%20INFORMACI%C3%93N/PT_SI_FO_002_Inventario_Activos_Informacion_INFRAESTRUCTURA.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "SIG-REG-003 · Matriz de riesgos y plan de tratamiento – Gestión de Infraestructura (ORCA IT)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/RIESGOS%20TI/SIG-REG-003_Matriz_Riesgos_SGC_Gestion_Infraestructura_ORCAIT.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "SIG-REG-004 · Ficha técnica y medición de indicadores – Gestión de Infraestructura (ORCA IT)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/INDICADORES/SIG-REG-004_Indicadores_SGC_Gestion_Infraestructura_ORCAIT.xlsx",
+      "category": "registros",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "ETR-001 · Caracterización del proceso Gestión de Infraestructura IT",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/CARACTERIZACI%C3%93N/Caracterizaci%C3%B3n%20Procesos_GestiondeInfraestructura_ORCAIT.xlsx",
+      "category": "documentos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "Manual de funciones ORCA IT",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ORCA%20IT/Manual%20de%20funciones%20Orca.xlsx",
+      "category": "manuales",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "Organigrama ORCA IT 2026",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Calidad/ORCA%20IT/Procedimiento/Organigrama_ORCAIT_2026.pdf",
+      "category": "documentos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "Política de alcohol y drogas ORCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/08.%20Politicas/POLITICA%20DE%20ALCOHOL%20Y%20DROGAS%20ORCA.docx",
+      "category": "politicas",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "Formato de acta COPASST ORCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/FORMATO%20DE%20ACTA%20COPASST%20ORCA.docx",
+      "category": "formatos",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "Acta de reunión Comité de Convivencia Laboral – ORCA IT",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20SST/04.%20Formatos/ACTA%20DE%20REUNI%C3%93N%20COMIT%C3%89%20DE%20CONVIVENCIA%20LABORAL-%20ORCA%20IT.docx",
+      "category": "registros",
+      "process": "Gestión SST",
+      "featured": false
+    },
+    {
+      "title": "Formato acta de reunión – ORCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/FORMATO%20ACTA%20DE%20REUNI%C3%93N%20-%20ORCA%20-%20copia.docx",
+      "category": "formatos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    },
+    {
+      "title": "Plantilla de manual (carpeta MANUAL de Gestión de Infraestructura ORCA)",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20de%20Infraestructura%20ORCA/DOCUMENTACI%C3%93N%20FINAL%20PARA%20SU%20CODIFICACI%C3%93N/MANUAL/PLANTILLA%20MANUAL.docx",
+      "category": "documentos",
+      "process": "Gestión de Infraestructura IT",
+      "featured": false
+    },
+    {
+      "title": "Membrete ORCA",
+      "url": "https://playtechlatam.sharepoint.com/sites/Calidad/Gestin%20del%20Talento%20Humano/04.%20Formatos/Playtech/MEMBRETE%20DE%20GRUPOPLAY/Orca.docx",
+      "category": "formatos",
+      "process": "Gestión del Talento Humano",
+      "featured": false
+    }
+  ],
+  "tucompra": [
+    {
+      "title": "Manual Corporativo - Direccionamiento Estratégico (Misión, Visión y Objetivos)",
+      "url": "https://drive.google.com/file/d/1AHIiUtOcUqCiYUy8NzkGKMBqCV4vWdDC/view?usp=sharing",
+      "category": "manuales",
+      "process": "Gestión Estratégica",
+      "featured": true
+    },
+    {
+      "title": "Declaración de la Política TUCOMPRA 2026",
+      "url": "https://drive.google.com/file/d/1e-fldHRrQM3JGmQpZYbaToeO7Kcol2t7/view?usp=sharing",
+      "category": "politicas",
+      "process": "Gestión Estratégica",
+      "featured": true
+    },
+    {
+      "title": "Formulario de Solicitud de Documentación",
+      "url": "https://forms.gle/UnvBZn66aVyQDyDW8",
+      "category": "formatos",
+      "process": "Gestión Estratégica",
+      "featured": false
+    },
+    {
+      "title": "Plan Anual de Auditoría Interna 2026",
+      "url": "https://drive.google.com/drive/u/0/folders/107Kk5GRPvKFqyD-q6J4vaB46nPFuy8wg",
+      "category": "registros",
+      "process": "Gestión Estratégica",
+      "featured": true
+    },
+    {
+      "title": "Socialización y aprobación - Plan Anual de Auditoría",
+      "url": "https://drive.google.com/file/d/1wcN8tpnvDG-Shd0Z0lfb2fSYUF7HQh8Z/view?usp=sharing",
+      "category": "registros",
+      "process": "Gestión Estratégica",
+      "featured": false
+    },
+    {
+      "title": "Acta - Socialización y aprobación Manual Corporativo",
+      "url": "https://drive.google.com/file/d/1zEc1u5jC-J0loxd4kIvT1FLeCdbnQ0PZ/view?usp=sharing",
+      "category": "manuales",
+      "process": "Gestión Estratégica",
+      "featured": false
+    },
+    {
+      "title": "Acta de Socialización y aprobación de la Política del SGI",
+      "url": "https://drive.google.com/file/d/1zEc1u5jC-J0loxd4kIvT1FLeCdbnQ0PZ/view?usp=sharing",
+      "category": "politicas",
+      "process": "Gestión Estratégica",
+      "featured": true
+    },
+    {
+      "title": "Organigrama TUCOMPRA S.A.S.",
+      "url": "https://drive.google.com/file/d/1kGyaDZqqt77Fk07ttJ62MUWymjBD3Tpj/view?usp=sharing",
+      "category": "documentos",
+      "process": "Gestión Estratégica",
+      "featured": false
+    },
+    {
+      "title": "Formulario de Solicitud de Documentación (Creación / Modificación)",
+      "url": "https://forms.gle/UnvBZn66aVyQDyDW8",
+      "category": "formatos",
+      "process": "Mejoramiento Continuo",
+      "featured": false
+    },
+    {
+      "title": "Solicitud de Gestión de Documentos Técnicos",
+      "url": "https://forms.gle/UnvBZn66aVyQDyDW8",
+      "category": "documentos",
+      "process": "Gestión de Ingeniería",
+      "featured": false
+    },
+    {
+      "title": "Formulario de Creación / Actualización de Políticas (plazo 5 a 7 días hábiles)",
+      "url": "https://forms.gle/UnvBZn66aVyQDyDW8",
+      "category": "formatos",
+      "process": "Gestión de Seguridad de la Información",
+      "featured": false
+    }
+  ]
+}
