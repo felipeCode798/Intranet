@@ -97,14 +97,14 @@ export default function Forms() {
           <h1 className="page-title">Formularios de solicitud</h1>
           <p className="page-sub">Cada tipo de solicitud tiene su propio formulario y plazo de respuesta. Solo el líder del área puede editarlos.</p>
         </div>
-        <button className="btn dark" onClick={() => (led.length === 1 ? nav(`/app/formularios/nuevo?areaId=${led[0].id}`) : setPickArea(true))} disabled={!led.length}>
+        <button className="btn dark" onClick={() => (led.length === 1 ? nav(`/app/formularios/nuevo?areaId=${led[0].id}`) : setPickArea(true))} disabled={!led.length} data-tour="forms-new">
           <Plus /> Nuevo formulario
         </button>
       </div>
       {!grouped.length && <div className="card"><Empty title="Aún no hay formularios" text="Crea el primer tipo de solicitud para tu área." icon={<FilePen />} /></div>}
       <div className="stack" style={{ gap: 20 }}>
-        {grouped.map((g) => (
-          <div className="card" key={g.area?.id}>
+        {grouped.map((g, gi) => (
+          <div className="card" key={g.area?.id} data-tour={gi === 0 ? 'forms-area' : undefined}>
             <div className="card-h">
               <div className="row">
                 <span className="ico-box">
@@ -115,11 +115,11 @@ export default function Forms() {
                   <span className="xs faint">{g.area?.isShared ? 'Área compartida del holding' : 'Área de empresa'}</span>
                 </div>
               </div>
-              <Link className="btn sm ghost" to={`/app/formularios/nuevo?areaId=${g.area?.id}`}>
+              <Link className="btn sm ghost" to={`/app/formularios/nuevo?areaId=${g.area?.id}`} data-tour={gi === 0 ? 'forms-add' : undefined}>
                 <Plus /> Agregar
               </Link>
             </div>
-            <div className="table-wrap">
+            <div className="table-wrap" data-tour={gi === 0 ? 'forms-table' : undefined}>
               <table className="table">
                 <thead>
                   <tr>
@@ -133,7 +133,7 @@ export default function Forms() {
                   </tr>
                 </thead>
                 <tbody>
-                  {g.forms.map((f) => (
+                  {g.forms.map((f, fi) => (
                     <tr key={f.id}>
                       <td>
                         <div className="row">
@@ -154,11 +154,11 @@ export default function Forms() {
                       <td>{f.fields.length}</td>
                       <td>{f._count?.requests ?? 0}</td>
                       <td className="small">{fmtDate(f.updatedAt)}</td>
-                      <td>
+                      <td data-tour={gi === 0 && fi === 0 ? 'forms-publish' : undefined}>
                         <Switch on={f.active} onChange={() => toggle(f)} />
                       </td>
                       <td>
-                        <div className="row" style={{ gap: 2, justifyContent: 'flex-end' }}>
+                        <div className="row" style={{ gap: 2, justifyContent: 'flex-end' }} data-tour={gi === 0 && fi === 0 ? 'forms-actions' : undefined}>
                           <Link className="icon-btn sm" to={`/app/formularios/${f.id}`} title="Editar">
                             <Pencil />
                           </Link>
@@ -305,7 +305,7 @@ export function FormBuilder() {
     <>
       <div className="page-head">
         <div className="row" style={{ alignItems: 'flex-start' }}>
-          <Link className="icon-btn" to="/app/formularios" aria-label="Volver">
+          <Link className="icon-btn" to="/app/formularios" aria-label="Volver" data-tour="fb-back">
             <ArrowLeft />
           </Link>
           <div>
@@ -316,16 +316,16 @@ export function FormBuilder() {
           </div>
         </div>
         <div className="row">
-          <button className={`btn ${preview ? 'ghost' : 'outline'}`} onClick={() => setPreview(!preview)}>
+          <button className={`btn ${preview ? 'ghost' : 'outline'}`} onClick={() => setPreview(!preview)} data-tour="fb-preview">
             <Eye /> {preview ? 'Volver a editar' : 'Vista previa'}
           </button>
-          <button className="btn" onClick={save} disabled={saving}>
+          <button className="btn" onClick={save} disabled={saving} data-tour="fb-save">
             <Save /> {saving ? 'Guardando…' : dirty ? 'Guardar cambios' : 'Guardado'}
           </button>
         </div>
       </div>
 
-      <div className="card" style={{ marginBottom: 20 }}>
+      <div className="card" style={{ marginBottom: 20 }} data-tour="fb-settings">
         <div className="form-grid" style={{ gridTemplateColumns: '1.3fr 1fr 1fr' }}>
           <div className="field">
             <label>Nombre del tipo de solicitud</label>
@@ -358,14 +358,14 @@ export function FormBuilder() {
           </div>
           <div className="field">
             <label>Plazo de respuesta (días hábiles)</label>
-            <div className="sla-picker">
+            <div className="sla-picker" data-tour="fb-sla">
               <input type="range" min={1} max={30} value={form.slaDays} onChange={(e) => update({ slaDays: Number(e.target.value) })} aria-label="Plazo en días hábiles" />
               <input className="input sm" type="number" min={1} max={90} value={form.slaDays} onChange={(e) => update({ slaDays: Math.max(1, Number(e.target.value) || 1) })} style={{ width: 70 }} />
             </div>
           </div>
           <div className="field" style={{ gridColumn: '1 / -1' }}>
             <label>Ícono</label>
-            <div className="row wrap" style={{ gap: 6 }}>
+            <div className="row wrap" style={{ gap: 6 }} data-tour="fb-icon">
               {Object.keys(ICONS).map((k) => (
                 <button key={k} type="button" className={`icon-btn ${form.icon === k ? 'tone-violet' : ''}`} style={form.icon === k ? { boxShadow: '0 0 0 2px var(--p)' } : undefined} onClick={() => update({ icon: k })} title={k}>
                   <Icon name={k} />
@@ -373,7 +373,7 @@ export function FormBuilder() {
               ))}
             </div>
           </div>
-          <div className="field" style={{ gridColumn: '1 / -1' }}>
+          <div className="field" style={{ gridColumn: '1 / -1' }} data-tour="fb-active">
             <Switch on={form.active} onChange={(v) => update({ active: v })} label={form.active ? 'Publicado en las intranets de las empresas que atiende el área' : 'Oculto (borrador)'} />
           </div>
         </div>
@@ -396,7 +396,7 @@ export function FormBuilder() {
         </div>
       ) : (
         <div className="builder">
-          <div className="palette-list">
+          <div className="palette-list" data-tour="fb-palette">
             <div className="small bold muted" style={{ padding: '0 4px 4px' }}>
               Arrastra o haz clic para agregar
             </div>
@@ -417,7 +417,7 @@ export function FormBuilder() {
             ))}
           </div>
 
-          <div className="card canvas">
+          <div className="card canvas" data-tour="fb-canvas">
             <div className="card-h">
               <h3>Campos del formulario</h3>
               <span className="xs faint">{fields.length} campo(s) · el asunto y la prioridad se piden siempre</span>
@@ -503,7 +503,7 @@ export function FormBuilder() {
             </div>
           </div>
 
-          <div className="card props">
+          <div className="card props" data-tour="fb-props">
             {selected ? (
               <FieldProps field={selected} onChange={(p) => patchField(selected.id, p)} onClose={() => setSel(null)} />
             ) : (

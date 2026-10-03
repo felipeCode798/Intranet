@@ -111,14 +111,14 @@ export default function Reports() {
           <h1 className="page-title">Reportes de solicitudes</h1>
           <p className="page-sub">Cumplimiento de plazos, volumen y carga por área, empresa y responsable.</p>
         </div>
-        <button className="btn dark" onClick={exportCsv}>
+        <button className="btn dark" onClick={exportCsv} data-tour="rep-export">
           <Download /> Exportar CSV
         </button>
       </div>
 
       <div className="card" style={{ padding: 16 }}>
         <div className="filters">
-          <select className="select sm" value={f.areaId} onChange={(e) => setF({ ...f, areaId: e.target.value, companyId: '' })} aria-label="Área">
+          <select className="select sm" value={f.areaId} onChange={(e) => setF({ ...f, areaId: e.target.value, companyId: '' })} aria-label="Área" data-tour="rep-area">
             <option value="">Todas las áreas</option>
             {filters?.areas.map((a) => (
               <option key={a.id} value={a.id}>
@@ -128,7 +128,7 @@ export default function Reports() {
             ))}
           </select>
           {showCompanyFilter && (
-            <select className="select sm" value={f.companyId} onChange={(e) => setF({ ...f, companyId: e.target.value })} aria-label="Empresa">
+            <select className="select sm" value={f.companyId} onChange={(e) => setF({ ...f, companyId: e.target.value })} aria-label="Empresa" data-tour="rep-company">
               <option value="">Todas las empresas</option>
               {companyOptions.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -137,13 +137,13 @@ export default function Reports() {
               ))}
             </select>
           )}
-          <label className="row small muted">
+          <label className="row small muted" data-tour="rep-from">
             Desde <input className="input sm" type="date" value={f.from} onChange={(e) => setF({ ...f, from: e.target.value })} style={{ width: 150 }} />
           </label>
-          <label className="row small muted">
+          <label className="row small muted" data-tour="rep-to">
             Hasta <input className="input sm" type="date" value={f.to} onChange={(e) => setF({ ...f, to: e.target.value })} style={{ width: 150 }} />
           </label>
-          <div className="tabs" style={{ marginLeft: 'auto' }}>
+          <div className="tabs" style={{ marginLeft: 'auto' }} data-tour="rep-presets">
             {[
               ['30 d', 1],
               ['3 m', 3],
@@ -170,7 +170,7 @@ export default function Reports() {
         <div className="card mt">{errorMessage(error)}</div>
       ) : (
         <>
-          <div className="kpis mt">
+          <div className="kpis mt" data-tour="rep-kpis">
             <div className="kpi">
               <small><Inbox /> Radicadas</small>
               <div className="v">{k.total}</div>
@@ -209,7 +209,7 @@ export default function Reports() {
             </div>
           ) : (
             <div className="chart-grid">
-              <div className="card wide">
+              <div className="card wide" data-tour="rep-monthly">
                 <div className="card-h">
                   <h3>Radicadas vs. respondidas por mes</h3>
                   <div className="legend">
@@ -231,7 +231,7 @@ export default function Reports() {
                 </div>
               </div>
 
-              <div className="card">
+              <div className="card" data-tour="rep-by-area">
                 <div className="card-h">
                   <h3>Cumplimiento por área</h3>
                 </div>
@@ -255,7 +255,7 @@ export default function Reports() {
                 </div>
               </div>
 
-              <div className="card">
+              <div className="card" data-tour="rep-by-company">
                 <div className="card-h">
                   <h3>Solicitudes por empresa</h3>
                   <span className="xs faint">Haz clic para filtrar</span>
@@ -283,7 +283,7 @@ export default function Reports() {
                 </div>
               </div>
 
-              <div className="card">
+              <div className="card" data-tour="rep-status">
                 <div className="card-h">
                   <h3>Estado actual</h3>
                 </div>
@@ -299,7 +299,7 @@ export default function Reports() {
                 </div>
               </div>
 
-              <div className="card">
+              <div className="card" data-tour="rep-forms">
                 <div className="card-h">
                   <h3>Tipos de solicitud más frecuentes</h3>
                 </div>
@@ -318,7 +318,7 @@ export default function Reports() {
                 </div>
               </div>
 
-              <div className="card wide">
+              <div className="card wide" data-tour="rep-assignees">
                 <div className="card-h">
                   <h3>Desempeño por responsable</h3>
                   <span className="xs faint"><TrendingUp size={13} style={{ verticalAlign: '-2px' }} /> Cumplimiento = respondidas a tiempo / respondidas</span>
@@ -353,7 +353,7 @@ export default function Reports() {
                 </div>
               </div>
 
-              <div className="card wide">
+              <div className="card wide" data-tour="rep-overdue">
                 <div className="card-h">
                   <h3>Solicitudes vencidas sin respuesta</h3>
                   <span className="badge tone-red"><AlertTriangle /> {data.overdueList.length}</span>

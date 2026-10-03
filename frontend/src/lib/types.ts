@@ -71,6 +71,8 @@ export interface Me {
   companyId: string | null;
   company: CompanyBrief | null;
   memberships: { id: string; role: AreaRole; area: { id: string; name: string; icon: string; isShared: boolean } }[];
+  /** Recorridos guiados ya vistos (claves de lib/tours.ts) */
+  toursSeen?: string[];
 }
 
 export interface UserBrief {

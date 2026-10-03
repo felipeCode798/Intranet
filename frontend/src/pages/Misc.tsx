@@ -1,8 +1,9 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { ArrowRight, Bell, CheckCheck, Lock, LogIn, Mail, Save } from 'lucide-react';
+import { ArrowRight, Bell, CheckCheck, Compass, Lock, LogIn, Mail, Save } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { useTour } from '../components/Tour';
 import { Avatar, Empty, Loading, useToast } from '../components/ui';
 import { useNotifications } from '../layouts/AdminLayout';
 import { api, errorMessage } from '../lib/api';
@@ -140,11 +141,11 @@ export function NotificationsPage() {
           <h1 className="page-title">Notificaciones</h1>
           <p className="page-sub">Cada movimiento de tus solicitudes. También te llega por correo.</p>
         </div>
-        <button className="btn ghost" onClick={readAll}>
+        <button className="btn ghost" onClick={readAll} data-tour="notif-readall">
           <CheckCheck /> Marcar todo como leído
         </button>
       </div>
-      <div className="card">
+      <div className="card" data-tour="notif-list">
         {data?.items.length ? (
           <div className="stack" style={{ gap: 0 }}>
             {data.items.map((n) => (
@@ -181,8 +182,18 @@ export function NotificationsPage() {
 export function Profile() {
   const { user, refresh } = useAuth();
   const toast = useToast();
+  const tour = useTour();
   const [f, setF] = useState({ name: user?.name || '', jobTitle: user?.jobTitle || '', phone: user?.phone || '', currentPassword: '', newPassword: '' });
   const [busy, setBusy] = useState(false);
+  const restartTours = async () => {
+    try {
+      await tour.reset();
+      toast('Listo: verás de nuevo el recorrido al entrar a cada sección');
+      tour.start(['panel', 'profile']);
+    } catch (e) {
+      toast(errorMessage(e), 'error');
+    }
+  };
   const save = async () => {
     setBusy(true);
     try {
@@ -214,7 +225,7 @@ export function Profile() {
           <div className="card-h">
             <h3>Datos personales</h3>
           </div>
-          <div className="form-grid">
+          <div className="form-grid" data-tour="profile-data">
             <div className="field">
               <label>Nombre</label>
               <input className="input" value={f.name} onChange={(e) => setF({ ...f, name: e.target.value })} />
@@ -232,7 +243,7 @@ export function Profile() {
           <div className="card-h">
             <h3>Cambiar contraseña</h3>
           </div>
-          <div className="form-grid">
+          <div className="form-grid" data-tour="profile-password">
             <div className="field">
               <label>Contraseña actual</label>
               <input className="input" type="password" value={f.currentPassword} onChange={(e) => setF({ ...f, currentPassword: e.target.value })} />
@@ -243,23 +254,34 @@ export function Profile() {
             </div>
           </div>
           <div className="row mt" style={{ justifyContent: 'flex-end' }}>
-            <button className="btn" onClick={save} disabled={busy}>
+            <button className="btn" onClick={save} disabled={busy} data-tour="profile-save">
               <Save /> Guardar
             </button>
           </div>
         </div>
-        <div className="card">
-          <div className="card-h">
-            <h3>Mis áreas</h3>
+        <div className="stack" style={{ gap: 20 }}>
+          <div className="card" data-tour="profile-areas">
+            <div className="card-h">
+              <h3>Mis áreas</h3>
+            </div>
+            <div className="stack">
+              {user?.memberships.map((m) => (
+                <div key={m.id} className="row between" style={{ padding: 10, borderRadius: 12, background: 'var(--card-2)' }}>
+                  <span className="bold small">{m.area.name}</span>
+                  <span className={`badge ${m.role === 'LEADER' ? 'tone-amber' : 'tone-blue'}`}>{m.role === 'LEADER' ? 'Líder' : 'Colaborador'}</span>
+                </div>
+              ))}
+              {!user?.memberships.length && <div className="small faint">No perteneces a ninguna área.</div>}
+            </div>
           </div>
-          <div className="stack">
-            {user?.memberships.map((m) => (
-              <div key={m.id} className="row between" style={{ padding: 10, borderRadius: 12, background: 'var(--card-2)' }}>
-                <span className="bold small">{m.area.name}</span>
-                <span className={`badge ${m.role === 'LEADER' ? 'tone-amber' : 'tone-blue'}`}>{m.role === 'LEADER' ? 'Líder' : 'Colaborador'}</span>
-              </div>
-            ))}
-            {!user?.memberships.length && <div className="small faint">No perteneces a ninguna área.</div>}
+          <div className="card" data-tour="profile-tours">
+            <div className="card-h">
+              <h3>Recorridos guiados</h3>
+            </div>
+            <p className="small muted">Las secciones del panel muestran un recorrido la primera vez que entras. Reinícialos para volver a verlos todos.</p>
+            <button className="btn outline mt" onClick={restartTours}>
+              <Compass /> Reiniciar recorridos
+            </button>
           </div>
         </div>
       </div>

@@ -40,12 +40,12 @@ export default function Users() {
           <p className="page-sub">Colaboradores de {isSuper ? 'todas las empresas del grupo' : 'tu empresa'}, su rol y sus áreas.</p>
         </div>
         <div className="row">
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} data-tour="users-search">
             <Search size={16} className="faint" style={{ position: 'absolute', left: 12, top: 10 }} />
             <input className="input sm" style={{ paddingLeft: 36, width: 220 }} placeholder="Buscar" value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
           {isSuper && (
-            <select className="select sm" value={companyId} onChange={(e) => setCompanyId(e.target.value)}>
+            <select className="select sm" value={companyId} onChange={(e) => setCompanyId(e.target.value)} data-tour="users-company">
               <option value="">Todas las empresas</option>
               {companies.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -54,7 +54,7 @@ export default function Users() {
               ))}
             </select>
           )}
-          <button className="btn dark" onClick={() => setEdit('new')}>
+          <button className="btn dark" onClick={() => setEdit('new')} data-tour="users-new">
             <Plus /> Nuevo usuario
           </button>
         </div>
@@ -63,7 +63,7 @@ export default function Users() {
         {isLoading ? (
           <Loading />
         ) : users.length ? (
-          <div className="table-wrap">
+          <div className="table-wrap" data-tour="users-table">
             <table className="table">
               <thead>
                 <tr>
@@ -76,7 +76,7 @@ export default function Users() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((u) => (
+                {users.map((u, ui) => (
                   <tr key={u.id} style={{ opacity: u.active ? 1 : 0.55 }}>
                     <td>
                       <div className="row">
@@ -102,11 +102,11 @@ export default function Users() {
                         ))}
                       </div>
                     </td>
-                    <td>
+                    <td data-tour={ui === 0 ? 'users-active' : undefined}>
                       <Switch on={u.active} onChange={() => toggleActive(u)} />
                     </td>
                     <td>
-                      <button className="icon-btn sm" onClick={() => setEdit(u)} aria-label="Editar">
+                      <button className="icon-btn sm" onClick={() => setEdit(u)} aria-label="Editar" data-tour={ui === 0 ? 'users-edit' : undefined}>
                         <Pencil />
                       </button>
                     </td>

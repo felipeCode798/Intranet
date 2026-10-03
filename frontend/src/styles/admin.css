@@ -286,6 +286,25 @@
 .bar-inline { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; display: flex; gap: 2px; min-width: 90px; }
 .bar-inline i { display: block; height: 100%; }
 
+/* ---- recorrido guiado ---- */
+.tour-root { position: fixed; inset: 0; z-index: 400; }
+.tour-block { position: absolute; inset: 0; }
+.tour-dim { position: absolute; inset: 0; background: rgba(15, 14, 34, .55); animation: fade .2s ease; }
+.tour-spot { position: fixed; border-radius: 16px; box-shadow: 0 0 0 9999px rgba(15, 14, 34, .55), 0 0 0 3px var(--p); pointer-events: none; transition: top .25s ease, left .25s ease, width .25s ease, height .25s ease; }
+.tour-pop { position: fixed; width: min(360px, calc(100vw - 24px)); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow-lg); padding: 16px 18px 14px; transition: top .25s ease, left .25s ease; animation: pop .18s ease; }
+.tour-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.tour-top .icon-btn { margin-left: auto; }
+.tour-chip { font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--p-600); background: var(--p-soft); padding: 3px 9px; border-radius: 99px; }
+.tour-pop h3 { font-size: 17px; line-height: 1.3; margin-bottom: 6px; }
+.tour-pop p, .tour-pop li { font-size: 13.5px; color: var(--ink-2); }
+.tour-pop b { color: var(--ink); font-weight: 600; }
+.tour-pop ul { margin: 8px 0 0 18px; display: flex; flex-direction: column; gap: 4px; }
+.tour-progress { height: 4px; border-radius: 99px; background: var(--line); margin: 14px 0 12px; overflow: hidden; }
+.tour-progress i { display: block; height: 100%; background: var(--p); border-radius: 99px; transition: width .25s ease; }
+.tour-foot { display: flex; align-items: center; gap: 8px; }
+.tour-skip { font-size: 12.5px; color: var(--ink-3); padding: 4px 2px; }
+.tour-skip:hover { color: var(--ink); text-decoration: underline; }
+
 /* responsive */
 @media (max-width: 1280px) {
   .dash-hero { grid-template-columns: 1fr 1fr 1fr; }

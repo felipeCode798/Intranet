@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { useAuth } from './auth/AuthContext';
+import { TourProvider } from './components/Tour';
 import { Loading } from './components/ui';
 import AdminLayout from './layouts/AdminLayout';
 import IntranetLayout from './layouts/IntranetLayout';
@@ -46,7 +47,7 @@ export default function App() {
         <Route path="sistema-gestion" element={<Quality />} />
       </Route>
 
-      <Route path="/app" element={<RequireAuth panel><AdminLayout /></RequireAuth>}>
+      <Route path="/app" element={<RequireAuth panel><TourProvider><AdminLayout /></TourProvider></RequireAuth>}>
         <Route index element={<Dashboard />} />
         <Route path="bandeja" element={<Inbox />} />
         <Route path="solicitudes/:id" element={<AdminRequestPage />} />

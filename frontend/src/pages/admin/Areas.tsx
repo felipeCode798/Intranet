@@ -52,7 +52,7 @@ export default function Areas() {
         </div>
         <div className="row">
           {isSuper && (
-            <select className="select sm" value={filter} onChange={(e) => setFilter(e.target.value)}>
+            <select className="select sm" value={filter} onChange={(e) => setFilter(e.target.value)} data-tour="areas-filter">
               <option value="">Todas las empresas</option>
               {companies.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -62,7 +62,7 @@ export default function Areas() {
             </select>
           )}
           {(isSuper || isCompanyAdmin) && (
-            <button className="btn dark" onClick={() => setEdit('new')}>
+            <button className="btn dark" onClick={() => setEdit('new')} data-tour="areas-new">
               <Plus /> Nueva área
             </button>
           )}
@@ -70,8 +70,8 @@ export default function Areas() {
       </div>
       {!visible.length && <div className="card"><Empty title="No hay áreas para gestionar" icon={<Network />} /></div>}
       <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))' }}>
-        {visible.map((a) => (
-          <div className="card" key={a.id}>
+        {visible.map((a, ai) => (
+          <div className="card" key={a.id} data-tour={ai === 0 ? 'areas-card' : undefined}>
             <div className="card-h" style={{ alignItems: 'flex-start' }}>
               <div className="row" style={{ alignItems: 'flex-start' }}>
                 <span className="ico-box">
@@ -94,7 +94,7 @@ export default function Areas() {
                 </div>
               </div>
               {canAdmin(a) && (
-                <button className="icon-btn sm" onClick={() => setEdit(a)} aria-label="Editar área">
+                <button className="icon-btn sm" onClick={() => setEdit(a)} aria-label="Editar área" data-tour={ai === 0 ? 'areas-edit' : undefined}>
                   <Pencil />
                 </button>
               )}
@@ -104,8 +104,8 @@ export default function Areas() {
               {a._count?.forms ?? 0} formulario(s) · {a._count?.requests ?? 0} solicitud(es)
             </div>
             <div className="stack" style={{ gap: 8 }}>
-              {a.members.map((m) => (
-                <div key={m.id} className="row" style={{ padding: '8px 10px', borderRadius: 12, background: 'var(--card-2)' }}>
+              {a.members.map((m, mi) => (
+                <div key={m.id} className="row" style={{ padding: '8px 10px', borderRadius: 12, background: 'var(--card-2)' }} data-tour={ai === 0 && mi === 0 ? 'areas-member' : undefined}>
                   <Avatar name={m.user.name} size="sm" />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="small bold">{m.user.name}</div>
@@ -119,19 +119,19 @@ export default function Areas() {
                     <span className="badge tone-gray">Colaborador</span>
                   )}
                   {canAdmin(a) && (
-                    <button className="btn sm outline" style={{ height: 28 }} onClick={() => setRole(a, m.user.id, m.role === 'LEADER' ? 'MEMBER' : 'LEADER')}>
+                    <button className="btn sm outline" style={{ height: 28 }} onClick={() => setRole(a, m.user.id, m.role === 'LEADER' ? 'MEMBER' : 'LEADER')} data-tour={ai === 0 && mi === 0 ? 'areas-role' : undefined}>
                       {m.role === 'LEADER' ? 'Quitar líder' : 'Hacer líder'}
                     </button>
                   )}
                   {(canAdmin(a) || m.role === 'MEMBER') && (
-                    <button className="icon-btn sm" onClick={() => remove(a, m.user.id)} aria-label="Quitar del área">
+                    <button className="icon-btn sm" onClick={() => remove(a, m.user.id)} aria-label="Quitar del área" data-tour={ai === 0 && mi === 0 ? 'areas-remove' : undefined}>
                       <Trash2 />
                     </button>
                   )}
                 </div>
               ))}
               {!a.members.length && <div className="small faint">Sin miembros todavía.</div>}
-              <button className="btn sm ghost" style={{ alignSelf: 'flex-start' }} onClick={() => setAdding(a)}>
+              <button className="btn sm ghost" style={{ alignSelf: 'flex-start' }} onClick={() => setAdding(a)} data-tour={ai === 0 ? 'areas-add' : undefined}>
                 <UserPlus /> Agregar persona
               </button>
             </div>

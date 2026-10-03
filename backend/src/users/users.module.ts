@@ -3,6 +3,7 @@ import {
   Body,
   ConflictException,
   Controller,
+  Delete,
   ForbiddenException,
   Get,
   Injectable,
@@ -15,7 +16,7 @@ import {
 } from '@nestjs/common';
 import { GlobalRole, Prisma } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
-import { IsBoolean, IsEmail, IsIn, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsIn, IsOptional, IsString, Matches, MinLength } from 'class-validator';
 import { AuthUser, canManageCompany, isSuper } from '../common/auth-user';
 import { CurrentUser } from '../common/decorators';
 import { stripPassword } from '../common/user-select';
@@ -49,6 +50,10 @@ class ProfileDto {
   @IsOptional() @IsString() avatarUrl?: string;
   @IsOptional() @IsString() currentPassword?: string;
   @IsOptional() @IsString() @MinLength(8, { message: 'La contraseña debe tener al menos 8 caracteres' }) newPassword?: string;
+}
+
+class TourDto {
+  @IsString() @Matches(/^[a-z0-9-]{1,40}$/) key: string;
 }
 
 const LIST_INCLUDE = {
@@ -150,6 +155,17 @@ export class UsersService {
     const user = await this.prisma.user.update({ where: { id: u.id }, data: { ...data, ...(passwordHash ? { passwordHash } : {}) } });
     return stripPassword(user);
   }
+
+  /** Marca un recorrido guiado como visto para que no vuelva a abrirse solo */
+  async markTourSeen(u: AuthUser, key: string) {
+    const me = await this.prisma.user.findUniqueOrThrow({ where: { id: u.id }, select: { toursSeen: true } });
+    if (me.toursSeen.includes(key)) return { toursSeen: me.toursSeen };
+    return this.prisma.user.update({ where: { id: u.id }, data: { toursSeen: { push: key } }, select: { toursSeen: true } });
+  }
+
+  resetTours(u: AuthUser) {
+    return this.prisma.user.update({ where: { id: u.id }, data: { toursSeen: [] }, select: { toursSeen: true } });
+  }
 }
 
 @Controller('users')
@@ -174,6 +190,16 @@ export class UsersController {
   @Patch('me')
   updateMe(@CurrentUser() u: AuthUser, @Body() dto: ProfileDto) {
     return this.svc.updateProfile(u, dto);
+  }
+
+  @Post('me/tours')
+  markTourSeen(@CurrentUser() u: AuthUser, @Body() dto: TourDto) {
+    return this.svc.markTourSeen(u, dto.key);
+  }
+
+  @Delete('me/tours')
+  resetTours(@CurrentUser() u: AuthUser) {
+    return this.svc.resetTours(u);
   }
 
   @Patch(':id')

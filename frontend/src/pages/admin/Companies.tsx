@@ -45,13 +45,13 @@ export default function Companies() {
           <h1 className="page-title">Empresas e intranets</h1>
           <p className="page-sub">Cada empresa del Grupo Playtech tiene su propia intranet con la misma estética y su color de marca.</p>
         </div>
-        <Link className="btn dark" to="/app/empresas/nueva">
+        <Link className="btn dark" to="/app/empresas/nueva" data-tour="co-new">
           <Plus /> Nueva empresa
         </Link>
       </div>
       <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
-        {data.map((c) => (
-          <div className="card" key={c.id} style={{ padding: 0, overflow: 'hidden', opacity: c.active ? 1 : 0.6 }}>
+        {data.map((c, ci) => (
+          <div className="card" key={c.id} style={{ padding: 0, overflow: 'hidden', opacity: c.active ? 1 : 0.6 }} data-tour={ci === 0 ? 'co-card' : undefined}>
             <div style={{ ...companyPalette(c.primaryColor, c.secondaryColor), background: 'linear-gradient(120deg, var(--navy-900), var(--navy-800) 60%, var(--brand))', padding: '22px 22px 18px', color: '#fff' } as any}>
               <div className="row between">
                 {c.logoUrl ? <img src={fileUrl(c.logoUrl)} alt={c.name} style={{ height: 30, maxWidth: 140, objectFit: 'contain' }} /> : <b style={{ fontSize: 18, letterSpacing: '.03em' }}>{c.name.toUpperCase()}</b>}
@@ -76,17 +76,17 @@ export default function Companies() {
                 </span>
               </div>
               <div className="row mt">
-                <Link className="btn sm ghost" to={`/intranet/${c.slug}`}>
+                <Link className="btn sm ghost" to={`/intranet/${c.slug}`} data-tour={ci === 0 ? 'co-view' : undefined}>
                   <ExternalLink /> Ver intranet
                 </Link>
-                <Link className="btn sm outline" to={`/app/empresas/${c.id}`}>
+                <Link className="btn sm outline" to={`/app/empresas/${c.id}`} data-tour={ci === 0 ? 'co-edit' : undefined}>
                   <Pencil /> Editar
                 </Link>
               </div>
             </div>
           </div>
         ))}
-        <Link to="/app/empresas/nueva" className="add-board" style={{ minHeight: 240 }}>
+        <Link to="/app/empresas/nueva" className="add-board" style={{ minHeight: 240 }} data-tour="co-add">
           <div>
             <div className="plus" style={{ margin: '0 auto' }}>
               <Plus />
@@ -293,10 +293,10 @@ export function CompanyWizard() {
         </div>
         {!isNew && (
           <div className="row">
-            <Link className="btn ghost" to={`/intranet/${d.slug}`}>
+            <Link className="btn ghost" to={`/intranet/${d.slug}`} data-tour="wiz-view">
               <ExternalLink /> Ver intranet
             </Link>
-            <button className="btn" onClick={submit} disabled={saving}>
+            <button className="btn" onClick={submit} disabled={saving} data-tour="wiz-save">
               <Check /> Guardar
             </button>
           </div>
@@ -304,7 +304,7 @@ export function CompanyWizard() {
       </div>
 
       <div className="wizard">
-        <nav className="card steps-nav" aria-label="Pasos">
+        <nav className="card steps-nav" aria-label="Pasos" data-tour="wiz-steps">
           {STEPS.map((s, i) => (
             <button key={s.t} className={`${i === step ? 'on' : ''} ${done.has(i) && i !== step ? 'done' : ''}`} onClick={() => goto(i)}>
               <span className="n">{done.has(i) && i !== step ? <Check /> : i + 1}</span>
@@ -316,7 +316,7 @@ export function CompanyWizard() {
           ))}
         </nav>
 
-        <div className="card">
+        <div className="card" data-tour="wiz-body">
           <div className="wiz-progress">
             <i style={{ width: `${((step + 1) / STEPS.length) * 100}%` }} />
           </div>
@@ -632,11 +632,11 @@ export function CompanyWizard() {
           )}
 
           <div className="wiz-foot">
-            <button className="btn outline" disabled={step === 0} onClick={() => goto(step - 1)}>
+            <button className="btn outline" disabled={step === 0} onClick={() => goto(step - 1)} data-tour="wiz-prev">
               <ArrowLeft /> Anterior
             </button>
             {step < last ? (
-              <button className="btn" onClick={() => goto(step + 1)}>
+              <button className="btn" onClick={() => goto(step + 1)} data-tour="wiz-next">
                 Siguiente <ArrowRight />
               </button>
             ) : (

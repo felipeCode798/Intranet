@@ -73,6 +73,8 @@ Radicada ──(líder asigna)──▶ Asignada ──(colaborador acepta)─�
 ### Panel de gestión (`/app`)
 Tablero con el estilo de la referencia (modo claro/oscuro): indicadores por rol, notificaciones, asignaciones, calendario de vencimientos, tareas con barra de ANS, cumplimiento a 90 días y próximo vencimiento. Además: bandeja (mis áreas / asignadas a mí / empresa u holding / radicadas por mí, con filtros), formularios, reportes, empresas, áreas, usuarios y notificaciones.
 
+**Recorridos guiados:** la primera vez que una persona entra al panel y a cada módulo se abre un recorrido que resalta y explica cada botón y sección (solo los que su rol ve). Se repiten desde el botón **?** de la barra superior y se reinician en *Mi perfil*. Los textos están en `frontend/src/lib/tours.ts` y cada paso apunta a un elemento con `data-tour="…"`; lo ya visto se guarda en `User.toursSeen`.
+
 ### Reportes (`/app/reportes`)
 KPIs (radicadas, cumplimiento del plazo, vencidas, tiempos medios de respuesta y aceptación, escalamientos), radicadas vs. respondidas por mes, cumplimiento por área, solicitudes por empresa, estado actual, tipos más frecuentes, desempeño por responsable, lista de vencidas y exportación CSV. En áreas compartidas el líder filtra por **empresa**.
 

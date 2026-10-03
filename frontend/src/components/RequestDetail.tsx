@@ -119,7 +119,7 @@ export function RequestDetail({ id }: { id: string }) {
   return (
     <div className="req-layout">
       <div className="stack" style={{ gap: 20 }}>
-        <div className="card">
+        <div className="card" data-tour="req-head">
           <div className="req-head">
             <div className="ico-box lg">
               <Icon name={r.form.icon} />
@@ -176,7 +176,7 @@ export function RequestDetail({ id }: { id: string }) {
 
         {/* Panel de acciones según permisos */}
         {p.canResolveEscalation && pendingEsc && (
-          <div className="action-panel warn">
+          <div className="action-panel warn" data-tour="req-escalation">
             <h4>
               <ShieldAlert /> {pendingEsc.requestedBy.name} solicitó escalar esta solicitud
             </h4>
@@ -201,7 +201,7 @@ export function RequestDetail({ id }: { id: string }) {
           </div>
         )}
         {p.canAssign && (
-          <div className="action-panel">
+          <div className="action-panel" data-tour="req-assign">
             <h4>
               <UserPlus /> Esta solicitud espera asignación
             </h4>
@@ -217,7 +217,7 @@ export function RequestDetail({ id }: { id: string }) {
           </div>
         )}
         {p.canAccept && (
-          <div className="action-panel">
+          <div className="action-panel" data-tour="req-accept">
             <h4>
               <UserCheck /> Se te asignó esta solicitud
             </h4>
@@ -233,7 +233,7 @@ export function RequestDetail({ id }: { id: string }) {
           </div>
         )}
         {p.canRespond && (
-          <div className="card">
+          <div className="card" data-tour="req-respond">
             <div className="card-h">
               <h3>Responder solicitud</h3>
               <button className="btn sm warn" onClick={() => setModal('escalate')}>
@@ -265,7 +265,7 @@ export function RequestDetail({ id }: { id: string }) {
         )}
 
         {r.status === 'RESOLVED' && (
-          <div className="response-box">
+          <div className="response-box" data-tour="req-response">
             <h3>
               <CircleCheck size={18} /> Respuesta {r.resolvedLate ? '(fuera de plazo)' : ''}
             </h3>
@@ -277,7 +277,7 @@ export function RequestDetail({ id }: { id: string }) {
           </div>
         )}
 
-        <div className="card">
+        <div className="card" data-tour="req-info">
           <div className="card-h">
             <h3>Información de la solicitud</h3>
           </div>
@@ -286,7 +286,7 @@ export function RequestDetail({ id }: { id: string }) {
         </div>
 
         {p.canComment && (
-          <div className="card">
+          <div className="card" data-tour="req-comments">
             <div className="card-h">
               <h3>Comentarios</h3>
             </div>
@@ -321,7 +321,7 @@ export function RequestDetail({ id }: { id: string }) {
 
       {/* Columna derecha: ANS + traza */}
       <div className="stack" style={{ gap: 20 }}>
-        <div className={`sla-box ${slaCls}`}>
+        <div className={`sla-box ${slaCls}`} data-tour="req-sla">
           {slaCls === 'late' ? <AlertTriangle /> : slaCls === 'done' ? <CheckCircle2 /> : <Clock />}
           <div>
             <b>
@@ -339,7 +339,7 @@ export function RequestDetail({ id }: { id: string }) {
           </div>
         </div>
         {(p.canReassign || p.canTransfer) && !p.canResolveEscalation && !p.canAssign && (
-          <div className="card flat">
+          <div className="card flat" data-tour="req-leader">
             <div className="small bold">Acciones del líder</div>
             <div className="row wrap mt-sm">
               {p.canReassign && (
@@ -355,7 +355,7 @@ export function RequestDetail({ id }: { id: string }) {
             </div>
           </div>
         )}
-        <div className="card">
+        <div className="card" data-tour="req-trace">
           <div className="card-h">
             <h3>Traza de la solicitud</h3>
             <span className="xs faint">{r.mailLogs.length} correos</span>

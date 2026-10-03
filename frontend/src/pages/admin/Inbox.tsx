@@ -62,7 +62,7 @@ export default function Inbox() {
           <h1 className="page-title">Bandeja de solicitudes</h1>
           <p className="page-sub">Gestiona las solicitudes según tu rol. Las atrasadas se marcan en rojo.</p>
         </div>
-        <div className="tabs">
+        <div className="tabs" data-tour="inbox-tabs">
           {tabs
             .filter((t) => t.show)
             .map((t) => (
@@ -82,11 +82,12 @@ export default function Inbox() {
               set({ q: q || null });
             }}
             style={{ position: 'relative' }}
+            data-tour="inbox-search"
           >
             <Search size={16} className="faint" style={{ position: 'absolute', left: 12 }} />
             <input className="input sm" style={{ paddingLeft: 36, minWidth: 240 }} placeholder="Código, asunto o solicitante" value={q} onChange={(e) => setQ(e.target.value)} />
           </form>
-          <select className="select sm" value={status} onChange={(e) => set({ status: e.target.value || null })}>
+          <select className="select sm" value={status} onChange={(e) => set({ status: e.target.value || null })} data-tour="inbox-status">
             <option value="">Todos los estados</option>
             {(Object.keys(STATUS) as RequestStatus[]).map((s) => (
               <option key={s} value={s}>
@@ -95,7 +96,7 @@ export default function Inbox() {
             ))}
           </select>
           {tab === 'area' && ledAreas.length > 1 && (
-            <select className="select sm" value={areaId} onChange={(e) => set({ areaId: e.target.value || null, companyId: null })}>
+            <select className="select sm" value={areaId} onChange={(e) => set({ areaId: e.target.value || null, companyId: null })} data-tour="inbox-area">
               <option value="">Todas mis áreas</option>
               {ledAreas.map((a) => (
                 <option key={a.id} value={a.id}>
@@ -105,7 +106,7 @@ export default function Inbox() {
             </select>
           )}
           {showCompany && (
-            <select className="select sm" value={companyId} onChange={(e) => set({ companyId: e.target.value || null })}>
+            <select className="select sm" value={companyId} onChange={(e) => set({ companyId: e.target.value || null })} data-tour="inbox-company">
               <option value="">Todas las empresas</option>
               {companies.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -114,10 +115,10 @@ export default function Inbox() {
               ))}
             </select>
           )}
-          <button className={`btn sm ${overdue ? 'danger' : 'outline'}`} onClick={() => set({ overdue: overdue ? null : 'true' })}>
+          <button className={`btn sm ${overdue ? 'danger' : 'outline'}`} onClick={() => set({ overdue: overdue ? null : 'true' })} data-tour="inbox-overdue">
             <AlertTriangle /> Solo vencidas
           </button>
-          <span className="small faint" style={{ marginLeft: 'auto' }}>
+          <span className="small faint" style={{ marginLeft: 'auto' }} data-tour="inbox-count">
             {data?.total ?? 0} resultado(s)
           </span>
         </div>
@@ -125,7 +126,7 @@ export default function Inbox() {
         {isLoading ? (
           <Loading />
         ) : data?.items.length ? (
-          <div className="table-wrap">
+          <div className="table-wrap" data-tour="inbox-list">
             <table className="table">
               <thead>
                 <tr>
@@ -176,10 +177,12 @@ export default function Inbox() {
             </table>
           </div>
         ) : (
-          <Empty title="No hay solicitudes" text="Prueba con otros filtros." />
+          <div data-tour="inbox-list">
+            <Empty title="No hay solicitudes" text="Prueba con otros filtros." />
+          </div>
         )}
         {pages > 1 && (
-          <div className="row" style={{ justifyContent: 'flex-end', marginTop: 14 }}>
+          <div className="row" style={{ justifyContent: 'flex-end', marginTop: 14 }} data-tour="inbox-pager">
             <button className="round-btn" disabled={page <= 1} onClick={() => set({ page: String(page - 1) })} aria-label="Anterior">
               <ChevronLeft />
             </button>
@@ -201,7 +204,7 @@ export function AdminRequestPage() {
   return (
     <>
       <div className="row" style={{ margin: '14px 0 18px' }}>
-        <Link className="btn ghost sm" to="/app/bandeja">
+        <Link className="btn ghost sm" to="/app/bandeja" data-tour="req-back">
           <ArrowLeft /> Bandeja
         </Link>
       </div>

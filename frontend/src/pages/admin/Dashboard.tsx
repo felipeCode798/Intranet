@@ -31,14 +31,14 @@ export default function Dashboard() {
 
   const features = data.isLeader
     ? [
-        { n: c.pendingAssignment, t: 'Por asignar', s: 'Esperan responsable en tus áreas', icon: UserPlus, to: '/app/bandeja?tab=area&status=PENDING_ASSIGNMENT' },
-        { n: c.escalations, t: 'Escalamientos', s: 'Reasignar o trasladar', icon: ShieldAlert, to: '/app/bandeja?tab=area&status=ESCALATION_REQUESTED' },
-        { n: c.overdueArea, t: 'Vencidas', s: 'Superaron el plazo', icon: AlarmClock, to: '/app/bandeja?tab=area&overdue=true', alert: c.overdueArea > 0 },
+        { n: c.pendingAssignment, t: 'Por asignar', s: 'Esperan responsable en tus áreas', icon: UserPlus, to: '/app/bandeja?tab=area&status=PENDING_ASSIGNMENT', tour: 'dash-card-pending' },
+        { n: c.escalations, t: 'Escalamientos', s: 'Reasignar o trasladar', icon: ShieldAlert, to: '/app/bandeja?tab=area&status=ESCALATION_REQUESTED', tour: 'dash-card-escalations' },
+        { n: c.overdueArea, t: 'Vencidas', s: 'Superaron el plazo', icon: AlarmClock, to: '/app/bandeja?tab=area&overdue=true', alert: c.overdueArea > 0, tour: 'dash-card-overdue' },
       ]
     : [
-        { n: c.toAccept, t: 'Por aceptar', s: 'Asignadas a ti', icon: UserCheck, to: '/app/bandeja?tab=assigned&status=ASSIGNED' },
-        { n: c.inProgress, t: 'En gestión', s: 'Aceptadas por ti', icon: Inbox, to: '/app/bandeja?tab=assigned&status=IN_PROGRESS' },
-        { n: c.overdueMine, t: 'Vencidas', s: 'Requieren atención', icon: AlarmClock, to: '/app/bandeja?tab=assigned&overdue=true', alert: c.overdueMine > 0 },
+        { n: c.toAccept, t: 'Por aceptar', s: 'Asignadas a ti', icon: UserCheck, to: '/app/bandeja?tab=assigned&status=ASSIGNED', tour: 'dash-card-accept' },
+        { n: c.inProgress, t: 'En gestión', s: 'Aceptadas por ti', icon: Inbox, to: '/app/bandeja?tab=assigned&status=IN_PROGRESS', tour: 'dash-card-progress' },
+        { n: c.overdueMine, t: 'Vencidas', s: 'Requieren atención', icon: AlarmClock, to: '/app/bandeja?tab=assigned&overdue=true', alert: c.overdueMine > 0, tour: 'dash-card-overdue' },
       ];
 
   const assignments = data.isLeader && data.areaQueue.length ? data.areaQueue : data.myTasks;
@@ -46,7 +46,7 @@ export default function Dashboard() {
   return (
     <>
       <section className="dash-hero">
-        <div className="hello">
+        <div className="hello" data-tour="dash-hello">
           <h1>
             ¡Hola, {user?.name.split(' ')[0]}!
             <span className="hello-badges" aria-hidden>
@@ -58,7 +58,7 @@ export default function Dashboard() {
           </h1>
           <p>Este panel reúne tus asignaciones, las solicitudes de tus áreas y sus vencimientos para que nada se quede sin respuesta.</p>
         </div>
-        <Link className="add-board" to={slug ? `/intranet/${slug}/solicitudes` : '/app/bandeja'} aria-label="Nueva solicitud">
+        <Link className="add-board" to={slug ? `/intranet/${slug}/solicitudes` : '/app/bandeja'} aria-label="Nueva solicitud" data-tour="dash-new">
           <div>
             <div className="plus" style={{ margin: '0 auto' }}>
               <Plus />
@@ -67,7 +67,7 @@ export default function Dashboard() {
           </div>
         </Link>
         {features.map((f) => (
-          <Link key={f.t} to={f.to} className={`feature-card ${f.alert ? 'alert' : ''}`}>
+          <Link key={f.t} to={f.to} className={`feature-card ${f.alert ? 'alert' : ''}`} data-tour={f.tour}>
             <div className="illus">
               <span className="ring" />
               <span className="ico">
@@ -84,7 +84,7 @@ export default function Dashboard() {
       </section>
 
       <section className="dash-row r1">
-        <div className="card">
+        <div className="card" data-tour="dash-notifs">
           <div className="card-h">
             <h2>Notificaciones</h2>
             <Link className="link" to="/app/notificaciones">
@@ -112,7 +112,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="card">
+        <div className="card" data-tour="dash-assign">
           <div className="card-h">
             <h2>{data.isLeader && data.areaQueue.length ? 'Por gestionar en tus áreas' : 'Mis asignaciones'}</h2>
             <Link className="link" to="/app/bandeja">
@@ -151,7 +151,7 @@ export default function Dashboard() {
       </section>
 
       <section className="dash-row r2">
-        <div className="card">
+        <div className="card" data-tour="dash-tasks">
           <div className="card-h">
             <h2>
               Tareas activas{' '}
@@ -184,7 +184,7 @@ export default function Dashboard() {
           {!data.myTasks.length && <Empty title="Sin tareas asignadas" text="Cuando un líder te asigne una solicitud aparecerá aquí." />}
         </div>
 
-        <div className="cta-card">
+        <div className="cta-card" data-tour="dash-cta">
           <div className="gift">
             <Gift />
           </div>
@@ -196,7 +196,7 @@ export default function Dashboard() {
         </div>
 
         <div className="stack" style={{ gap: 20 }}>
-          <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 20 }} data-tour="dash-compliance">
             {(data.compliance.length ? data.compliance.slice(0, 2) : [{ label: 'Cumplimiento', pct: 0, total: 0, onTime: 0 }]).map((cmp) => (
               <div className="card ring-card" key={cmp.label} style={{ padding: 18 }}>
                 <div className="ring-wrap">
@@ -221,7 +221,7 @@ export default function Dashboard() {
               </div>
             ))}
           </div>
-          <div className="card next-card">
+          <div className="card next-card" data-tour="dash-next">
             <div className="card-h" style={{ marginBottom: 0 }}>
               <h2>Próximo vencimiento</h2>
               <CalendarClock size={18} className="faint" />
@@ -286,7 +286,7 @@ function DueCalendar({ items }: { items: Overview['calendar'] }) {
   const selected = byDay.get(sel.toDateString()) || [];
 
   return (
-    <div className="card mini-cal">
+    <div className="card mini-cal" data-tour="dash-calendar">
       <div className="card-h">
         <h2>{((s) => s.charAt(0).toUpperCase() + s.slice(1))(ref.toLocaleDateString('es-CO', { month: 'long', year: 'numeric' }))}</h2>
         <div className="row" style={{ gap: 6 }}>

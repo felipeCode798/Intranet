@@ -138,6 +138,8 @@ model User {
   companyId    String?
   company      Company?   @relation(fields: [companyId], references: [id])
   active       Boolean    @default(true)
+  /// Recorridos guiados del panel que ya vio (claves de frontend/src/lib/tours.ts)
+  toursSeen    String[]   @default([])
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 

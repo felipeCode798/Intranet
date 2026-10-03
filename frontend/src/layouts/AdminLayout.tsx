@@ -2,10 +2,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   Bell,
   Building2,
+  CircleHelp,
+  Compass,
   FilePen,
   Home,
   Inbox,
   LayoutGrid,
+  ListChecks,
   LogOut,
   Moon,
   Network,
@@ -20,7 +23,9 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { useTour } from '../components/Tour';
 import { Avatar } from '../components/ui';
+import { TOURS } from '../lib/tours';
 import { api } from '../lib/api';
 import { fmtDateTime } from '../lib/format';
 import type { NotificationItem } from '../lib/types';
@@ -62,7 +67,8 @@ export default function AdminLayout() {
   const nav = useNavigate();
   const qc = useQueryClient();
   const { data: notif } = useNotifications();
-  const [open, setOpen] = useState<null | 'bell' | 'user'>(null);
+  const tour = useTour();
+  const [open, setOpen] = useState<null | 'bell' | 'user' | 'help'>(null);
   const [q, setQ] = useState('');
   const popRef = useRef<HTMLDivElement>(null);
 
@@ -74,15 +80,15 @@ export default function AdminLayout() {
 
   const slug = user?.company?.slug;
   const items = [
-    { to: '/app', icon: LayoutGrid, label: 'Dashboard', end: true, show: true },
-    { to: '/app/bandeja', icon: Inbox, label: 'Bandeja de solicitudes', show: true },
-    { to: '/app/formularios', icon: FilePen, label: 'Formularios', show: isLeader },
-    { to: '/app/reportes', icon: PieChart, label: 'Reportes', show: isLeader || isCompanyAdmin, badge: 'new' },
-    { to: '/app/notificaciones', icon: Bell, label: 'Notificaciones', show: true },
-    { to: '/app/empresas', icon: Building2, label: isSuper ? 'Empresas e intranets' : 'Mi intranet', show: isSuper || isCompanyAdmin },
-    { to: '/app/areas', icon: Network, label: 'Áreas', show: isSuper || isCompanyAdmin || isLeader },
-    { to: '/app/usuarios', icon: Users, label: 'Usuarios', show: isSuper || isCompanyAdmin },
-    { to: '/app/perfil', icon: UserRound, label: 'Mi perfil', show: true },
+    { to: '/app', icon: LayoutGrid, label: 'Dashboard', end: true, show: true, tour: 'nav-dashboard' },
+    { to: '/app/bandeja', icon: Inbox, label: 'Bandeja de solicitudes', show: true, tour: 'nav-bandeja' },
+    { to: '/app/formularios', icon: FilePen, label: 'Formularios', show: isLeader, tour: 'nav-formularios' },
+    { to: '/app/reportes', icon: PieChart, label: 'Reportes', show: isLeader || isCompanyAdmin, badge: 'new', tour: 'nav-reportes' },
+    { to: '/app/notificaciones', icon: Bell, label: 'Notificaciones', show: true, tour: 'nav-notificaciones' },
+    { to: '/app/empresas', icon: Building2, label: isSuper ? 'Empresas e intranets' : 'Mi intranet', show: isSuper || isCompanyAdmin, tour: 'nav-empresas' },
+    { to: '/app/areas', icon: Network, label: 'Áreas', show: isSuper || isCompanyAdmin || isLeader, tour: 'nav-areas' },
+    { to: '/app/usuarios', icon: Users, label: 'Usuarios', show: isSuper || isCompanyAdmin, tour: 'nav-usuarios' },
+    { to: '/app/perfil', icon: UserRound, label: 'Mi perfil', show: true, tour: 'nav-perfil' },
   ].filter((i) => i.show);
 
   const readAll = async () => {
@@ -93,9 +99,9 @@ export default function AdminLayout() {
   return (
     <div className="admin-shell">
       <div className="side-wave" aria-hidden />
-      <nav className="sidebar" aria-label="Menú principal">
+      <nav className="sidebar" aria-label="Menú principal" data-tour="sidebar">
         {items.map((i) => (
-          <NavLink key={i.to} to={i.to} end={i.end} className={({ isActive }) => (isActive ? 'active' : '')} aria-label={i.label}>
+          <NavLink key={i.to} to={i.to} end={i.end} className={({ isActive }) => (isActive ? 'active' : '')} aria-label={i.label} data-tour={i.tour}>
             <i.icon />
             <span className="tip">{i.label}</span>
             {i.to === '/app/notificaciones' && !!notif?.unreadCount && <span className="pill-badge">{notif.unreadCount}</span>}
@@ -104,11 +110,11 @@ export default function AdminLayout() {
       </nav>
 
       <header className="topnav">
-        <Link to="/app" className="brand">
+        <Link to="/app" className="brand" data-tour="brand">
           <span className="logo-mark">P</span>
           Grupo Playtech
         </Link>
-        <div className="navlinks">
+        <div className="navlinks" data-tour="topnav-links">
           <NavLink to="/app" end>
             <LayoutGrid /> Dashboard
           </NavLink>
@@ -124,6 +130,7 @@ export default function AdminLayout() {
         <form
           className="search"
           role="search"
+          data-tour="search"
           onSubmit={(e) => {
             e.preventDefault();
             nav(`/app/bandeja?q=${encodeURIComponent(q)}`);
@@ -133,7 +140,7 @@ export default function AdminLayout() {
           <input placeholder="Buscar por código, asunto o solicitante" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Buscar solicitudes" />
         </form>
         <div className="right" ref={popRef}>
-          <div className="theme-toggle" role="group" aria-label="Tema">
+          <div className="theme-toggle" role="group" aria-label="Tema" data-tour="theme">
             <button className={theme === 'light' ? 'on' : ''} onClick={() => setTheme('light')}>
               <Sun /> Claro
             </button>
@@ -142,7 +149,35 @@ export default function AdminLayout() {
             </button>
           </div>
           <div style={{ position: 'relative' }}>
-            <button className="icon-btn bell-dot" onClick={() => setOpen(open === 'bell' ? null : 'bell')} aria-label="Notificaciones">
+            <button className="icon-btn" onClick={() => setOpen(open === 'help' ? null : 'help')} aria-label="Ayuda y recorridos guiados" title="Ayuda" data-tour="help">
+              <CircleHelp />
+            </button>
+            {open === 'help' && (
+              <div className="menu-pop">
+                <div className="hd">Recorridos guiados</div>
+                {tour.currentKey && (
+                  <button
+                    onClick={() => {
+                      setOpen(null);
+                      tour.start([tour.currentKey!], true);
+                    }}
+                  >
+                    <ListChecks /> Recorrido de esta sección: {TOURS[tour.currentKey].name}
+                  </button>
+                )}
+                <button
+                  onClick={() => {
+                    setOpen(null);
+                    tour.start(['panel'], true);
+                  }}
+                >
+                  <Compass /> Recorrido general del panel
+                </button>
+              </div>
+            )}
+          </div>
+          <div style={{ position: 'relative' }}>
+            <button className="icon-btn bell-dot" onClick={() => setOpen(open === 'bell' ? null : 'bell')} aria-label="Notificaciones" data-tour="bell">
               <Bell />
               {!!notif?.unreadCount && <span className="n">{notif.unreadCount > 99 ? '99+' : notif.unreadCount}</span>}
             </button>
@@ -182,7 +217,7 @@ export default function AdminLayout() {
             )}
           </div>
           <div style={{ position: 'relative' }}>
-            <button className="user-chip" onClick={() => setOpen(open === 'user' ? null : 'user')}>
+            <button className="user-chip" onClick={() => setOpen(open === 'user' ? null : 'user')} data-tour="user-menu">
               <Avatar name={user?.name} url={user?.avatarUrl} />
               <div style={{ textAlign: 'left' }}>
                 <b>{user?.name.split(' ')[0]}</b>
@@ -206,7 +241,7 @@ export default function AdminLayout() {
               </div>
             )}
           </div>
-          <Link className="btn dark" to={slug ? `/intranet/${slug}/solicitudes` : '/app/bandeja'}>
+          <Link className="btn dark" to={slug ? `/intranet/${slug}/solicitudes` : '/app/bandeja'} data-tour="new-request">
             <Plus /> Nueva solicitud
           </Link>
         </div>
