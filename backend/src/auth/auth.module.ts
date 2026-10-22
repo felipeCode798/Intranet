@@ -22,6 +22,7 @@ import { AuthUser } from '../common/auth-user';
 import { CurrentUser, IS_PUBLIC, Public, ROLES } from '../common/decorators';
 import { stripPassword } from '../common/user-select';
 import { PrismaService } from '../prisma/prisma.service';
+import { SettingsService } from '../settings/settings.module';
 
 class LoginDto {
   @IsEmail({}, { message: 'Correo inválido' })
@@ -36,6 +37,7 @@ export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwt: JwtService,
+    private settings: SettingsService,
   ) {}
 
   async login(email: string, password: string) {
@@ -60,7 +62,8 @@ export class AuthService {
       },
     });
     if (!u) throw new UnauthorizedException();
-    return stripPassword(u);
+    // Qué módulos ve y si al entrar va a la intranet o directo al panel
+    return { ...stripPassword(u), settings: await this.settings.forUser(u) };
   }
 
   /** Carga el usuario con sus membresías para construir el AuthUser */

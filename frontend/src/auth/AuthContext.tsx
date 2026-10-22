@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { api, TOKEN_KEY } from '../lib/api';
-import type { Me } from '../lib/types';
+import type { Me, ModuleKey } from '../lib/types';
 
 interface AuthState {
   user: Me | null;
@@ -13,8 +13,12 @@ interface AuthState {
   isCompanyAdmin: boolean;
   leaderAreaIds: string[];
   isLeader: boolean;
-  /** Tiene acceso al panel de gestión (dashboard) */
+  /** Gestiona solicitudes: administrador o miembro de un área (los demás solo radican y consultan las suyas) */
   hasPanel: boolean;
+  /** ¿El superadministrador dejó activo este módulo para su empresa? */
+  hasModule: (key: ModuleKey) => boolean;
+  /** Al iniciar sesión va a la intranet (true) o directo al panel (false) */
+  landsOnIntranet: boolean;
 }
 
 const Ctx = createContext<AuthState>(null as any);
@@ -57,6 +61,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const leaderAreaIds = user?.memberships.filter((m) => m.role === 'LEADER').map((m) => m.area.id) || [];
     const isSuper = user?.role === 'SUPER_ADMIN';
     const isCompanyAdmin = user?.role === 'COMPANY_ADMIN';
+    const modules = user?.settings?.modules;
+    const hasModule = (key: ModuleKey) => modules?.[key] !== false;
     return {
       user,
       loading,
@@ -68,6 +74,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       leaderAreaIds,
       isLeader: isSuper || leaderAreaIds.length > 0,
       hasPanel: isSuper || isCompanyAdmin || (user?.memberships.length || 0) > 0,
+      hasModule,
+      landsOnIntranet: !!user?.company && hasModule('intranet') && user?.settings?.showIntranetOnLogin !== false,
     };
   }, [user, loading, login, logout, refresh]);
 

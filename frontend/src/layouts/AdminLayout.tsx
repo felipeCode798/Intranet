@@ -2,9 +2,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   Bell,
   Building2,
+  CalendarClock,
+  CalendarOff,
   CircleHelp,
+  ClipboardCheck,
   Compass,
   FilePen,
+  Fingerprint,
   Home,
   Inbox,
   LayoutGrid,
@@ -16,7 +20,9 @@ import {
   Plus,
   Search,
   Settings,
+  SlidersHorizontal,
   Sun,
+  Target,
   UserRound,
   Users,
 } from 'lucide-react';
@@ -62,7 +68,15 @@ export function useNotifications() {
 }
 
 export default function AdminLayout() {
-  const { user, isSuper, isCompanyAdmin, isLeader, logout } = useAuth();
+  const { user, isSuper, isCompanyAdmin, isLeader, logout, hasModule } = useAuth();
+  const requests = hasModule('requests');
+  const reviewsLeaves = hasModule('leaves') && (isLeader || isCompanyAdmin);
+  const { data: pendingLeaves } = useQuery({
+    queryKey: ['leaves', 'pending-count'],
+    queryFn: async () => (await api.get<{ pending: number }>('/leaves/pending-count')).data.pending,
+    enabled: reviewsLeaves,
+    refetchInterval: 60000,
+  });
   const [theme, setTheme] = useTheme();
   const nav = useNavigate();
   const qc = useQueryClient();
@@ -81,13 +95,19 @@ export default function AdminLayout() {
   const slug = user?.company?.slug;
   const items = [
     { to: '/app', icon: LayoutGrid, label: 'Dashboard', end: true, show: true, tour: 'nav-dashboard' },
-    { to: '/app/bandeja', icon: Inbox, label: 'Bandeja de solicitudes', show: true, tour: 'nav-bandeja' },
-    { to: '/app/formularios', icon: FilePen, label: 'Formularios', show: isLeader, tour: 'nav-formularios' },
-    { to: '/app/reportes', icon: PieChart, label: 'Reportes', show: isLeader || isCompanyAdmin, badge: 'new', tour: 'nav-reportes' },
+    { to: '/app/bandeja', icon: Inbox, label: 'Bandeja de solicitudes', show: requests, tour: 'nav-bandeja' },
+    { to: '/app/formularios', icon: FilePen, label: 'Formularios', show: isLeader && requests, tour: 'nav-formularios' },
+    { to: '/app/reportes', icon: PieChart, label: 'Reportes', show: (isLeader || isCompanyAdmin) && requests && hasModule('reports'), tour: 'nav-reportes' },
+    { to: '/app/tareas', icon: ClipboardCheck, label: 'Tareas', show: hasModule('tasks'), tour: 'nav-tareas' },
+    { to: '/app/asistencia', icon: Fingerprint, label: 'Asistencia', show: hasModule('attendance'), tour: 'nav-asistencia' },
+    { to: '/app/horarios', icon: CalendarClock, label: 'Horarios', show: hasModule('schedules'), tour: 'nav-horarios' },
+    { to: '/app/permisos', icon: CalendarOff, label: 'Permisos', show: hasModule('leaves'), tour: 'nav-permisos' },
+    { to: '/app/desempeno', icon: Target, label: 'Desempeño', show: hasModule('performance'), tour: 'nav-desempeno' },
     { to: '/app/notificaciones', icon: Bell, label: 'Notificaciones', show: true, tour: 'nav-notificaciones' },
     { to: '/app/empresas', icon: Building2, label: isSuper ? 'Empresas e intranets' : 'Mi intranet', show: isSuper || isCompanyAdmin, tour: 'nav-empresas' },
     { to: '/app/areas', icon: Network, label: 'Áreas', show: isSuper || isCompanyAdmin || isLeader, tour: 'nav-areas' },
     { to: '/app/usuarios', icon: Users, label: 'Usuarios', show: isSuper || isCompanyAdmin, tour: 'nav-usuarios' },
+    { to: '/app/configuracion', icon: SlidersHorizontal, label: 'Configuración avanzada', show: isSuper, tour: 'nav-configuracion' },
     { to: '/app/perfil', icon: UserRound, label: 'Mi perfil', show: true, tour: 'nav-perfil' },
   ].filter((i) => i.show);
 
@@ -105,6 +125,7 @@ export default function AdminLayout() {
             <i.icon />
             <span className="tip">{i.label}</span>
             {i.to === '/app/notificaciones' && !!notif?.unreadCount && <span className="pill-badge">{notif.unreadCount}</span>}
+            {i.to === '/app/permisos' && !!pendingLeaves && <span className="pill-badge">{pendingLeaves}</span>}
           </NavLink>
         ))}
       </nav>
@@ -118,27 +139,33 @@ export default function AdminLayout() {
           <NavLink to="/app" end>
             <LayoutGrid /> Dashboard
           </NavLink>
-          <NavLink to="/app/bandeja">
-            <Inbox /> Solicitudes
-          </NavLink>
-          {(isLeader || isCompanyAdmin) && (
+          {requests && (
+            <NavLink to="/app/bandeja">
+              <Inbox /> Solicitudes
+            </NavLink>
+          )}
+          {(isLeader || isCompanyAdmin) && requests && hasModule('reports') && (
             <NavLink to="/app/reportes">
               <PieChart /> Reportes
             </NavLink>
           )}
         </div>
-        <form
-          className="search"
-          role="search"
-          data-tour="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            nav(`/app/bandeja?q=${encodeURIComponent(q)}`);
-          }}
-        >
-          <Search />
-          <input placeholder="Buscar por código, asunto o solicitante" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Buscar solicitudes" />
-        </form>
+        {requests ? (
+          <form
+            className="search"
+            role="search"
+            data-tour="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              nav(`/app/bandeja?q=${encodeURIComponent(q)}`);
+            }}
+          >
+            <Search />
+            <input placeholder="Buscar por código, asunto o solicitante" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Buscar solicitudes" />
+          </form>
+        ) : (
+          <div style={{ flex: 1 }} />
+        )}
         <div className="right" ref={popRef}>
           <div className="theme-toggle" role="group" aria-label="Tema" data-tour="theme">
             <button className={theme === 'light' ? 'on' : ''} onClick={() => setTheme('light')}>
@@ -193,7 +220,7 @@ export default function AdminLayout() {
                   {(notif?.items || []).slice(0, 8).map((n) => (
                     <Link
                       key={n.id}
-                      to={n.requestId ? `/app/solicitudes/${n.requestId}` : '/app/notificaciones'}
+                      to={n.requestId ? `/app/solicitudes/${n.requestId}` : n.link || '/app/notificaciones'}
                       onClick={() => {
                         setOpen(null);
                         if (!n.read) api.post(`/notifications/${n.id}/read`).then(() => qc.invalidateQueries({ queryKey: ['notifications'] }));
@@ -227,7 +254,7 @@ export default function AdminLayout() {
             {open === 'user' && (
               <div className="menu-pop">
                 <div className="hd">{user?.email}</div>
-                {slug && (
+                {slug && hasModule('intranet') && (
                   <Link to={`/intranet/${slug}`} onClick={() => setOpen(null)}>
                     <Home /> Ir a la intranet de {user?.company?.name}
                   </Link>
@@ -241,9 +268,11 @@ export default function AdminLayout() {
               </div>
             )}
           </div>
-          <Link className="btn dark" to={slug ? `/intranet/${slug}/solicitudes` : '/app/bandeja'} data-tour="new-request">
-            <Plus /> Nueva solicitud
-          </Link>
+          {requests && (
+            <Link className="btn dark" to={slug && hasModule('intranet') ? `/intranet/${slug}/solicitudes` : '/app/bandeja'} data-tour="new-request">
+              <Plus /> Nueva solicitud
+            </Link>
+          )}
         </div>
       </header>
 

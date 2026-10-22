@@ -8,6 +8,7 @@ import { useNotifications } from '../../layouts/AdminLayout';
 import { api } from '../../lib/api';
 import { fmtDate, fmtDateTime, fmtTime, remaining } from '../../lib/format';
 import type { RequestItem } from '../../lib/types';
+import ModulesHome from './ModulesHome';
 
 interface Overview {
   counts: { pendingAssignment: number; escalations: number; toAccept: number; inProgress: number; overdueArea: number; overdueMine: number; myOpen: number };
@@ -19,7 +20,7 @@ interface Overview {
   nextDue: RequestItem | null;
 }
 
-export default function Dashboard() {
+function RequestsDashboard() {
   const { user } = useAuth();
   const nav = useNavigate();
   const qc = useQueryClient();
@@ -347,5 +348,17 @@ function DueCalendar({ items }: { items: Overview['calendar'] }) {
         {!selected.length && <div className="small faint">Sin vencimientos este día.</div>}
       </div>
     </div>
+  );
+}
+
+/** Con "Solicitudes" activo se muestra el tablero de solicitudes y, debajo, el resumen de los demás módulos */
+export default function Dashboard() {
+  const { hasModule } = useAuth();
+  if (!hasModule('requests')) return <ModulesHome standalone />;
+  return (
+    <>
+      <RequestsDashboard />
+      <ModulesHome />
+    </>
   );
 }

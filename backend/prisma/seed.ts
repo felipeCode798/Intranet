@@ -41,8 +41,22 @@ async function main() {
   await prisma.requestForm.deleteMany();
   await prisma.areaMember.deleteMany();
   await prisma.areaCompany.deleteMany();
+  await prisma.timeEntry.deleteMany();
+  await prisma.kpiMeasure.deleteMany();
+  await prisma.jobAssignment.deleteMany();
+  await prisma.kpi.deleteMany();
+  await prisma.roleTask.deleteMany();
+  await prisma.jobRole.deleteMany();
+  await prisma.jobPosition.deleteMany();
   await prisma.area.deleteMany();
   await prisma.document.deleteMany();
+  await prisma.leaveRequest.deleteMany();
+  await prisma.attendanceRecord.deleteMany();
+  await prisma.attendanceCode.deleteMany();
+  await prisma.scheduleEntry.deleteMany();
+  await prisma.shiftTemplate.deleteMany();
+  await prisma.task.deleteMany();
+  await prisma.appSetting.deleteMany();
   await prisma.user.deleteMany();
   await prisma.company.deleteMany();
 
@@ -467,6 +481,171 @@ async function main() {
   }
   queue.sort((a, b) => a.created.getTime() - b.created.getTime());
   for (const q of queue) await q.run();
+
+  // ---------- configuración avanzada, horarios, tareas y permisos ----------
+  console.log('Configuración, horarios, tareas y permisos…');
+  await prisma.appSetting.create({ data: { id: 'global', showIntranetOnLogin: true, modules: {} } });
+
+  // Días calculados sobre la fecha de Bogotá, a medianoche UTC (columnas @db.Date)
+  const utcDay = (offset: number) => {
+    const base = new Date(Date.now() - 5 * 3600000);
+    return new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth(), base.getUTCDate() + offset));
+  };
+  const monday = utcDay(-((utcDay(0).getUTCDay() + 6) % 7));
+  const dayN = (n: number) => new Date(monday.getTime() + n * 86400000);
+  const weekday = (d: number) => ((d % 7) + 7) % 7; // 0 = lunes
+
+  const shift = (areaId: string, name: string, startTime: string, endTime: string, color: string, isRest = false) =>
+    prisma.shiftTemplate.create({ data: { areaId, name, startTime, endTime, color, isRest } });
+  type Shift = Awaited<ReturnType<typeof shift>>;
+  const fill = async (areaId: string, userIds: string[], plan: (userIndex: number, day: number) => Shift) => {
+    const from = -7; // desde la semana pasada, 3 semanas
+    for (let ui = 0; ui < userIds.length; ui++)
+      for (let d = from; d < from + 21; d++) {
+        const t = plan(ui, d);
+        await prisma.scheduleEntry.create({
+          data: {
+            userId: userIds[ui],
+            areaId,
+            date: dayN(d),
+            templateId: t.id,
+            isRest: t.isRest,
+            startTime: t.isRest ? null : t.startTime,
+            endTime: t.isRest ? null : t.endTime,
+          },
+        });
+      }
+  };
+
+  // Operaciones: horario fijo de lunes a viernes
+  await prisma.area.update({ where: { id: A.operaciones.id }, data: { scheduleMode: 'FIXED' } });
+  const opDia = await shift(A.operaciones.id, 'Jornada', '08:00', '17:00', '#1d4ed8');
+  const opRest = await shift(A.operaciones.id, 'Descanso', '00:00', '00:00', '#9998b3', true);
+  await fill(A.operaciones.id, [U.opLider.id, U.op1.id], (_, d) => (weekday(d) < 5 ? opDia : opRest));
+
+  // Soporte: turnos rotativos (mañana → tarde → noche → descanso), cada persona desfasada
+  await prisma.area.update({ where: { id: A.soporte.id }, data: { scheduleMode: 'ROTATING' } });
+  const soM = await shift(A.soporte.id, 'Mañana', '06:00', '14:00', '#0f766e');
+  const soT = await shift(A.soporte.id, 'Tarde', '14:00', '22:00', '#d97706');
+  const soN = await shift(A.soporte.id, 'Noche', '22:00', '06:00', '#4338ca');
+  const soR = await shift(A.soporte.id, 'Descanso', '00:00', '00:00', '#9998b3', true);
+  const rot = [soM, soM, soT, soT, soN, soN, soR];
+  await fill(A.soporte.id, [U.sopLider.id, U.sop1.id], (ui, d) => rot[(weekday(d) + ui * 3) % 7]);
+
+  // Marketing: cambia todos los días
+  await prisma.area.update({ where: { id: A.marketing.id }, data: { scheduleMode: 'DAILY' } });
+  const mkA = await shift(A.marketing.id, 'Temprano', '07:00', '16:00', '#db2777');
+  const mkB = await shift(A.marketing.id, 'Intermedio', '09:00', '18:00', '#7c3aed');
+  const mkC = await shift(A.marketing.id, 'Tarde', '11:00', '20:00', '#d97706');
+  const mkR = await shift(A.marketing.id, 'Descanso', '00:00', '00:00', '#9998b3', true);
+  const mkPlan = [mkA, mkB, mkC, mkB, mkA, mkR, mkR];
+  await fill(A.marketing.id, [U.mkLider.id, U.mk1.id], (ui, d) => mkPlan[(weekday(d) + ui * 2) % 7]);
+
+  // Tecnología: cambia por semana
+  await prisma.area.update({ where: { id: A.tecnologia.id }, data: { scheduleMode: 'WEEKLY' } });
+  const tcM = await shift(A.tecnologia.id, 'Mañana', '06:00', '15:00', '#0f766e');
+  const tcT = await shift(A.tecnologia.id, 'Tarde', '12:00', '21:00', '#d97706');
+  const tcR = await shift(A.tecnologia.id, 'Descanso', '00:00', '00:00', '#9998b3', true);
+  await fill(A.tecnologia.id, [U.tecLider.id, U.tec1.id, U.tec2.id], (ui, d) => {
+    if (weekday(d) >= 5) return tcR;
+    return (Math.floor((d + 7) / 7) + ui) % 2 === 0 ? tcM : tcT;
+  });
+
+  // Tareas
+  type TStatus = 'TODO' | 'IN_PROGRESS' | 'DONE';
+  const task = (areaId: string, creator: string, assignee: string, title: string, description: string, priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT', due: number | null, status: TStatus = 'TODO') =>
+    prisma.task.create({
+      data: {
+        areaId,
+        createdById: creator,
+        assigneeId: assignee,
+        title,
+        description,
+        priority,
+        status,
+        dueDate: due === null ? null : utcDay(due),
+        startedAt: status !== 'TODO' ? new Date() : null,
+        completedAt: status === 'DONE' ? new Date() : null,
+        completionNote: status === 'DONE' ? 'Entregado y revisado.' : null,
+      },
+    });
+  await task(A.tecnologia.id, U.tecLider.id, U.tec1.id, 'Actualizar inventario de equipos', 'Revisar los equipos asignados y actualizar la hoja de inventario.', 'MEDIUM', 4);
+  await task(A.tecnologia.id, U.tecLider.id, U.tec2.id, 'Migrar el pipeline de despliegue', 'Pasar el despliegue del servicio de pagos al nuevo pipeline.', 'HIGH', 2, 'IN_PROGRESS');
+  await task(A.tecnologia.id, U.tecLider.id, U.tec1.id, 'Renovar certificados SSL', 'Renovar y validar los certificados que vencen este mes.', 'URGENT', -1);
+  await task(A.calidad.id, U.calidadLider.id, U.calidad1.id, 'Consolidar el plan anual de auditorías', 'Reunir las fechas de cada empresa y publicar el plan.', 'MEDIUM', 7);
+  await task(A.calidad.id, U.calidadLider.id, U.calidad2.id, 'Revisar formatos de TuCompra', 'Validar la versión vigente de los formatos del proceso comercial.', 'LOW', 10, 'DONE');
+  await task(A.soporte.id, U.sopLider.id, U.sop1.id, 'Actualizar la base de conocimiento', 'Documentar los 5 casos más frecuentes de la semana.', 'MEDIUM', 5);
+
+  // Permisos
+  type LType = 'PERSONAL' | 'MEDICAL' | 'STUDY' | 'VACATION' | 'ILLNESS' | 'OTHER';
+  const leave = (userId: string, areaId: string, type: LType, from: number, to: number, extra: Record<string, unknown>, status: 'PENDING' | 'APPROVED' | 'REJECTED' = 'PENDING', decidedById?: string) =>
+    prisma.leaveRequest.create({
+      data: {
+        userId,
+        areaId,
+        type,
+        startDate: utcDay(from),
+        endDate: utcDay(to),
+        description: 'Solicitud de demostración',
+        status,
+        decidedById,
+        decidedAt: decidedById ? new Date() : null,
+        ...extra,
+      },
+    });
+  const l1 = await leave(U.tec1.id, A.tecnologia.id, 'PERSONAL', 8, 8, { paid: true, willReturn: true, departureTime: '14:00', returnTime: '16:30', description: 'Cita en la notaría para firmar una escritura.' });
+  await leave(U.sop1.id, A.soporte.id, 'MEDICAL', 3, 5, { description: 'Incapacidad por procedimiento ambulatorio.', documents: [{ fileName: 'incapacidad.pdf', url: '/uploads/demo-incapacidad.pdf', mimeType: 'application/pdf', size: 120000 }] });
+  await leave(U.op1.id, A.operaciones.id, 'VACATION', 14, 25, { paid: true, willReturn: false, description: 'Vacaciones programadas.' }, 'APPROVED', U.opLider.id);
+  await leave(U.mk1.id, A.marketing.id, 'STUDY', 9, 9, { paid: false, willReturn: false, description: 'Examen final del diplomado.', additionalReason: 'Presento la certificación al regreso.' }, 'REJECTED', U.mkLider.id);
+  await prisma.notification.create({ data: { userId: U.tecLider.id, type: 'LEAVE_REQUESTED', title: 'Permiso por aprobar', body: 'Camilo Ruiz solicita un permiso personal', link: `/app/permisos?id=${l1.id}` } });
+
+  // Desempeño: cargos → roles (con sus KPI) → tareas (donde se registra el tiempo), con mediciones y tiempo por empresa (áreas que atienden a varias empresas)
+  console.log('Desempeño…');
+  const monthStartDay = new Date(Date.UTC(utcDay(0).getUTCFullYear(), utcDay(0).getUTCMonth(), 1));
+  const position = (areaId: string, name: string) => prisma.jobPosition.create({ data: { areaId, name } });
+  const jobRole = (positionId: string, name: string, userIds: string[]) =>
+    prisma.jobRole.create({ data: { positionId, name, assignments: { create: userIds.map((userId) => ({ userId })) } } });
+  const roleTask = (roleId: string, title: string) => prisma.roleTask.create({ data: { roleId, title } });
+  const kpi = (roleId: string, name: string, unit: string, target: number, direction: 'HIGHER_BETTER' | 'LOWER_BETTER' = 'HIGHER_BETTER') =>
+    prisma.kpi.create({ data: { roleId, name, unit, target, direction, period: 'MONTHLY' } });
+  const measure = (kpiId: string, userId: string, recordedById: string, value: number) =>
+    prisma.kpiMeasure.create({ data: { kpiId, userId, recordedById, periodStart: monthStartDay, value } });
+  const time = (userId: string, taskId: string, companyId: string, daysAgo: number, minutes: number) =>
+    prisma.timeEntry.create({ data: { userId, taskId, companyId, date: utcDay(-daysAgo), minutes, loggedById: userId } });
+
+  // Talento Humano (atiende a Playtech y Enjambre): cargo Administrador
+  const thAdmin = await position(A.talento.id, 'Administrador');
+  const thAnalyst = await jobRole(thAdmin.id, 'Analista', [U.th1.id]);
+  const thWellbeing = await jobRole(thAdmin.id, 'Bienestar', []);
+  await jobRole(thAdmin.id, 'Compras', []);
+  const tNomina = await roleTask(thAnalyst.id, 'Liquidar y revisar la nómina');
+  const tCert = await roleTask(thAnalyst.id, 'Expedir certificados laborales');
+  await roleTask(thAnalyst.id, 'Mantener actualizadas las hojas de vida');
+  await roleTask(thWellbeing.id, 'Organizar las actividades de bienestar');
+  const kNomina = await kpi(thAnalyst.id, 'Nóminas sin reproceso', '%', 98);
+  const kCert = await kpi(thAnalyst.id, 'Tiempo de expedición', 'horas', 24, 'LOWER_BETTER');
+  await measure(kNomina.id, U.th1.id, U.thLider.id, 99);
+  await measure(kCert.id, U.th1.id, U.thLider.id, 30);
+  for (const [t, c, d, m] of [
+    [tNomina.id, companies.playtech.id, 1, 180],
+    [tNomina.id, companies.enjambre.id, 2, 120],
+    [tCert.id, companies.playtech.id, 3, 45],
+    [tCert.id, companies.enjambre.id, 4, 60],
+  ] as const) await time(U.th1.id, t, c, d, m);
+
+  // Infraestructura (atiende a Enigma y TuCompra): cargo Senior
+  const infSenior = await position(A.infra.id, 'Senior');
+  const infCloud = await jobRole(infSenior.id, 'Cloud', [U.inf1.id]);
+  const tDisp = await roleTask(infCloud.id, 'Garantizar la disponibilidad de los servidores');
+  const tCosto = await roleTask(infCloud.id, 'Optimizar el costo de la nube');
+  const kDisp = await kpi(infCloud.id, 'Disponibilidad', '%', 99.9);
+  await kpi(infCloud.id, 'Ahorro mensual', '%', 5);
+  await measure(kDisp.id, U.inf1.id, U.infLider.id, 99.5);
+  for (const [t, c, d, m] of [
+    [tDisp.id, companies.enigma.id, 1, 240],
+    [tDisp.id, companies.tucompra.id, 2, 150],
+    [tCosto.id, companies.enigma.id, 5, 90],
+  ] as const) await time(U.inf1.id, t, c, d, m);
 
   console.log('\n✅ Datos de demostración creados. Contraseña de todos los usuarios: Playtech2026*');
   console.log('   Superadministrador:      admin@grupoplaytech.com');

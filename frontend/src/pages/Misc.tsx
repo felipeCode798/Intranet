@@ -108,11 +108,11 @@ export function Login() {
   );
 }
 
-/** Página de inicio: lleva al usuario a su intranet (o al panel si no tiene empresa) */
+/** Página de inicio: intranet de su empresa o panel, según lo que el superadministrador configuró */
 export function HomeRedirect() {
-  const { user } = useAuth();
+  const { user, landsOnIntranet } = useAuth();
   if (!user) return <Navigate to="/login" replace />;
-  return <Navigate to={user.company ? `/intranet/${user.company.slug}` : '/app'} replace />;
+  return <Navigate to={landsOnIntranet && user.company ? `/intranet/${user.company.slug}` : '/app'} replace />;
 }
 
 /** Enlace de los correos: abre la solicitud en el panel o en la intranet según el usuario */
@@ -151,7 +151,7 @@ export function NotificationsPage() {
             {data.items.map((n) => (
               <Link
                 key={n.id}
-                to={n.requestId ? `/app/solicitudes/${n.requestId}` : '#'}
+                to={n.requestId ? `/app/solicitudes/${n.requestId}` : n.link || '#'}
                 onClick={() => !n.read && api.post(`/notifications/${n.id}/read`).then(() => qc.invalidateQueries({ queryKey: ['notifications'] }))}
                 className="row"
                 style={{ padding: '14px 8px', borderTop: '1px solid var(--line)', alignItems: 'flex-start', opacity: n.read ? 0.6 : 1 }}

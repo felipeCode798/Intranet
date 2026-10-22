@@ -5,8 +5,10 @@
 
 /* ---- barra lateral: franja morada curva con íconos ---- */
 .side-wave { position: fixed; left: 0; top: 0; bottom: 0; width: 96px; z-index: 40; pointer-events: none; }
-.side-wave::before { content: ''; position: absolute; left: -60px; top: 14vh; bottom: 12vh; width: 140px; background: var(--p); border-radius: 0 90px 90px 0; box-shadow: 0 20px 50px rgba(100, 87, 245, .35); }
-.sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); width: 80px; z-index: 41; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.side-wave::before { content: none; }
+/* La franja morada es el fondo del propio menú, así crece con la cantidad de módulos activos */
+.sidebar { position: fixed; left: 0; top: 50%; transform: translateY(-50%); width: 80px; z-index: 41; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 26px 0; }
+.sidebar::before { content: ''; position: absolute; z-index: -1; left: -60px; top: 0; bottom: 0; width: 140px; background: var(--p); border-radius: 0 90px 90px 0; box-shadow: 0 20px 50px rgba(100, 87, 245, .35); }
 .sidebar a { position: relative; width: 50px; height: 50px; border-radius: 16px; display: grid; place-items: center; color: rgba(255, 255, 255, .78); transition: background .15s, color .15s; }
 .sidebar a svg { width: 21px; height: 21px; }
 .sidebar a:hover { background: rgba(255, 255, 255, .14); color: #fff; }
@@ -340,4 +342,15 @@
   .canvas-fields { grid-template-columns: 1fr; }
   .data-list { grid-template-columns: 1fr; }
   .review-grid { grid-template-columns: 1fr; }
+}
+
+/* Con muchos módulos activos el menú lateral se compacta en pantallas bajas */
+@media (max-height: 1000px) {
+  .sidebar { gap: 3px; padding: 20px 0; }
+  .sidebar a { width: 42px; height: 42px; border-radius: 13px; }
+  .sidebar a svg { width: 19px; height: 19px; }
+  .sidebar a .tip { left: 54px; }
+}
+@media (max-height: 720px) {
+  .sidebar { top: 88px; transform: none; max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: none; }
 }

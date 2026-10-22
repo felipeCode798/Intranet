@@ -73,6 +73,8 @@ export interface Me {
   memberships: { id: string; role: AreaRole; area: { id: string; name: string; icon: string; isShared: boolean } }[];
   /** Recorridos guiados ya vistos (claves de lib/tours.ts) */
   toursSeen?: string[];
+  /** Módulos activos para su empresa y si al entrar ve la intranet (los define el superadministrador) */
+  settings?: AppSettings;
 }
 
 export interface UserBrief {
@@ -219,5 +221,313 @@ export interface NotificationItem {
   body: string;
   read: boolean;
   requestId?: string | null;
+  /** Ruta del panel cuando la notificación no es de una solicitud */
+  link?: string | null;
   createdAt: string;
+}
+
+// ---------------------------------------------------------------- módulos y configuración
+export type ModuleKey = 'intranet' | 'requests' | 'reports' | 'tasks' | 'attendance' | 'schedules' | 'leaves' | 'performance';
+
+export interface AppSettings {
+  modules: Record<string, boolean>;
+  showIntranetOnLogin: boolean;
+}
+
+export interface SettingsOverview {
+  catalog: { key: ModuleKey; label: string; description: string }[];
+  global: AppSettings & { emailEnabled: boolean };
+  companies: {
+    id: string;
+    name: string;
+    slug: string;
+    primaryColor: string;
+    active: boolean;
+    showIntranetOverride: boolean | null;
+    moduleOverrides: Record<string, boolean>;
+  }[];
+}
+
+// ---------------------------------------------------------------- tareas
+export type TaskStatus = 'TODO' | 'IN_PROGRESS' | 'DONE' | 'CANCELLED';
+
+export interface Task {
+  id: string;
+  title: string;
+  description?: string | null;
+  areaId: string;
+  area: { id: string; name: string; icon: string };
+  assignee: UserBrief;
+  assigneeId: string;
+  createdBy: { id: string; name: string };
+  priority: Priority;
+  status: TaskStatus;
+  dueDate: string | null;
+  isOverdue: boolean;
+  startedAt?: string | null;
+  completedAt?: string | null;
+  completionNote?: string | null;
+  createdAt: string;
+  permissions: { canEdit: boolean; canCancel: boolean; canReopen: boolean; canWork: boolean };
+}
+
+// ---------------------------------------------------------------- horarios
+export type ScheduleMode = 'FIXED' | 'DAILY' | 'WEEKLY' | 'ROTATING';
+
+export interface ShiftTemplate {
+  id: string;
+  areaId: string;
+  name: string;
+  startTime: string;
+  endTime: string;
+  color: string;
+  isRest: boolean;
+  active: boolean;
+}
+
+export interface ScheduleEntry {
+  id: string;
+  userId: string;
+  areaId: string;
+  date: string;
+  templateId?: string | null;
+  startTime?: string | null;
+  endTime?: string | null;
+  isRest: boolean;
+  note?: string | null;
+  template?: { name: string; color: string } | null;
+  area?: { id: string; name: string };
+}
+
+export interface LeaveSpan {
+  id: string;
+  userId?: string;
+  type: LeaveType;
+  status: LeaveStatus;
+  startDate: string;
+  endDate: string;
+}
+
+export interface MySchedule {
+  from: string;
+  to: string;
+  entries: ScheduleEntry[];
+  leaves: LeaveSpan[];
+}
+
+export interface AreaSchedule {
+  from: string;
+  to: string;
+  area: { id: string; name: string; scheduleMode: ScheduleMode };
+  canEdit: boolean;
+  templates: ShiftTemplate[];
+  members: (UserBrief & { role: AreaRole })[];
+  entries: ScheduleEntry[];
+  leaves: LeaveSpan[];
+}
+
+// ---------------------------------------------------------------- asistencia
+export interface AttendanceDay {
+  date: string;
+  firstIn: string | null;
+  lastOut: string | null;
+  workedMinutes: number;
+  open: boolean;
+  punctuality: string | null;
+  earlyLeave: boolean;
+  records: { id: string; type: 'CHECK_IN' | 'CHECK_OUT'; at: string; punctuality: string | null; deviationMinutes: number | null }[];
+}
+
+export interface AttendanceMe {
+  nextType: 'CHECK_IN' | 'CHECK_OUT';
+  openSince: string | null;
+  today: string;
+  schedule: { isRest: boolean; startTime: string | null; endTime: string | null } | null;
+  todayRecords: AttendanceDay['records'];
+  history: AttendanceDay[];
+  pendingCode: { type: 'CHECK_IN' | 'CHECK_OUT'; expiresAt: string; resendAt: string; attemptsLeft: number } | null;
+  config: { codeTtlMinutes: number; graceMinutes: number };
+}
+
+export interface AttendanceTeamRow {
+  userId: string;
+  name: string;
+  avatarUrl?: string | null;
+  jobTitle?: string | null;
+  date: string;
+  scheduled: { start: string | null; end: string | null } | null;
+  leaveType: LeaveType | null;
+  status: 'PRESENT' | 'LATE' | 'ABSENT' | 'LEAVE' | 'INCOMPLETE';
+  firstIn: string | null;
+  lastOut: string | null;
+  workedMinutes: number;
+  open: boolean;
+  earlyLeave: boolean;
+}
+
+// ---------------------------------------------------------------- permisos
+export type LeaveType = 'PERSONAL' | 'MEDICAL' | 'STUDY' | 'VACATION' | 'ILLNESS' | 'OTHER';
+export type LeaveStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'CANCELLED';
+
+export interface Leave {
+  id: string;
+  seq: number;
+  code: string;
+  type: LeaveType;
+  status: LeaveStatus;
+  startDate: string;
+  endDate: string;
+  paid: boolean | null;
+  willReturn: boolean | null;
+  departureTime?: string | null;
+  returnTime?: string | null;
+  description: string;
+  additionalReason?: string | null;
+  documents: FileValue[];
+  decisionNote?: string | null;
+  decidedAt?: string | null;
+  createdAt: string;
+  user: UserBrief;
+  area?: { id: string; name: string } | null;
+  decidedBy?: { id: string; name: string } | null;
+  permissions: { canDecide: boolean; canCancel: boolean };
+}
+
+// ---------------------------------------------------------------- desempeño
+export type KpiDirection = 'HIGHER_BETTER' | 'LOWER_BETTER';
+export type KpiPeriod = 'DAILY' | 'WEEKLY' | 'MONTHLY';
+export type KpiStatus = 'MET' | 'NEAR' | 'BELOW' | 'NONE';
+
+export interface Kpi {
+  id: string;
+  roleId: string;
+  name: string;
+  description?: string | null;
+  unit: string;
+  target: number;
+  direction: KpiDirection;
+  period: KpiPeriod;
+  active: boolean;
+}
+
+export interface KpiMeasureRow {
+  id: string;
+  kpiId: string;
+  userId: string;
+  periodStart: string;
+  value: number;
+  note?: string | null;
+}
+
+export interface KpiSummary {
+  count: number;
+  average: number | null;
+  last: number | null;
+  /** 1 = meta lograda */
+  attainment: number | null;
+  status: KpiStatus;
+}
+
+export interface KpiResult extends Kpi {
+  measures: KpiMeasureRow[];
+  summary: KpiSummary;
+}
+
+export interface CompanyTag {
+  id: string;
+  name: string;
+  primaryColor: string;
+}
+
+export interface PerfCatalogTask {
+  id: string;
+  roleId: string;
+  title: string;
+  description?: string | null;
+  active: boolean;
+}
+
+export interface PerfCatalogRole {
+  id: string;
+  positionId: string;
+  name: string;
+  description?: string | null;
+  active: boolean;
+  assignees: UserBrief[];
+  kpis: Kpi[];
+  tasks: PerfCatalogTask[];
+}
+
+export interface PerfCatalogPosition {
+  id: string;
+  areaId: string;
+  name: string;
+  description?: string | null;
+  active: boolean;
+  roles: PerfCatalogRole[];
+}
+
+export interface PerfCatalogArea {
+  id: string;
+  name: string;
+  icon: string;
+  isShared: boolean;
+  canManage: boolean;
+  companies: CompanyTag[];
+  members: { role: AreaRole; user: UserBrief }[];
+  positions: PerfCatalogPosition[];
+}
+
+export interface PerfTaskResult {
+  id: string;
+  title: string;
+  description?: string | null;
+  minutes: number;
+  /** Minutos por id de empresa */
+  byCompany: Record<string, number>;
+}
+
+/** Los KPI se miden por rol; el tiempo, por tarea del rol */
+export interface PerfRoleBoard {
+  id: string;
+  name: string;
+  kpis: KpiResult[];
+  tasks: PerfTaskResult[];
+  /** Cumplimiento promedio de los KPI medidos del rol (0–1) */
+  score: number | null;
+}
+
+export interface PerfMe {
+  from: string;
+  to: string;
+  /** Cumplimiento promedio de los KPI medidos (0–1) */
+  score: number | null;
+  totalMinutes: number;
+  roles: (PerfRoleBoard & {
+    position: { id: string; name: string };
+    area: { id: string; name: string; icon: string; companies: CompanyTag[] };
+  })[];
+  entries: { id: string; date: string; minutes: number; note?: string | null; taskId: string; taskTitle: string; company: CompanyTag; loggedByOther: boolean }[];
+}
+
+export interface PerfTeamMember {
+  user: UserBrief & { active: boolean };
+  roles: (PerfRoleBoard & { positionName: string })[];
+  totalMinutes: number;
+  byCompany: Record<string, number>;
+  score: number | null;
+}
+
+export interface PerfTeam {
+  from: string;
+  to: string;
+  area: { id: string; name: string; icon: string; companies: CompanyTag[] };
+  members: PerfTeamMember[];
+  unassigned: (UserBrief & { active: boolean })[];
+}
+
+export interface PerfOverview {
+  from: string;
+  to: string;
+  areas: PerfTeam[];
 }

@@ -64,56 +64,126 @@ enum EscalationStatus {
   RESOLVED
 }
 
+enum ScheduleMode {
+  FIXED // Horario fijo toda la semana
+  DAILY // Cambia todos los días
+  WEEKLY // Cambia cada semana
+  ROTATING // Turnos rotativos
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+  CANCELLED
+}
+
+enum AttendanceType {
+  CHECK_IN
+  CHECK_OUT
+}
+
+enum LeaveType {
+  PERSONAL
+  MEDICAL // Incapacidad: exige soportes
+  STUDY
+  VACATION
+  ILLNESS
+  OTHER
+}
+
+enum KpiDirection {
+  HIGHER_BETTER // Entre más alto, mejor (p. ej. % de cumplimiento)
+  LOWER_BETTER // Entre más bajo, mejor (p. ej. tiempo de respuesta)
+}
+
+enum KpiPeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum LeaveStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+/// Configuración avanzada del holding (una sola fila, id = "global")
+model AppSetting {
+  id                  String   @id @default("global")
+  /// Si es falso, al iniciar sesión se va directo al panel y no a la intranet
+  showIntranetOnLogin Boolean  @default(true)
+  /// Interruptor general de correos: si es falso no se envía ninguno (cada intento queda en MailLog como DISABLED)
+  emailEnabled        Boolean  @default(true)
+  /// Módulos activos: { requests: true, tasks: false, ... }; lo que no aparezca está activo
+  modules             Json     @default("{}")
+  updatedAt           DateTime @updatedAt
+}
+
 model Company {
-  id               String   @id @default(uuid())
-  name             String
-  slug             String   @unique
-  legalName        String?
-  nit              String?
-  slogan           String?
-  description      String?
-  primaryColor     String   @default("#1d4ed8")
-  secondaryColor   String   @default("#38bdf8")
-  logoUrl          String?
-  heroImageUrl     String?
-  missionText      String?
-  missionImageUrl  String?
-  visionText       String?
-  visionImageUrl   String?
-  objectivesText   String?
-  purposeText      String?
-  organigramUrl    String?
-  managementSystem String?
-  contactEmail     String?
-  website          String?
-  announcements    String[] @default([])
-  values           String[] @default([])
-  active           Boolean  @default(true)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id                   String   @id @default(uuid())
+  name                 String
+  slug                 String   @unique
+  legalName            String?
+  nit                  String?
+  slogan               String?
+  description          String?
+  primaryColor         String   @default("#1d4ed8")
+  secondaryColor       String   @default("#38bdf8")
+  logoUrl              String?
+  heroImageUrl         String?
+  missionText          String?
+  missionImageUrl      String?
+  visionText           String?
+  visionImageUrl       String?
+  objectivesText       String?
+  purposeText          String?
+  organigramUrl        String?
+  managementSystem     String?
+  contactEmail         String?
+  website              String?
+  announcements        String[] @default([])
+  values               String[] @default([])
+  active               Boolean  @default(true)
+  /// Anula la opción global de mostrar la intranet al iniciar sesión (null = heredar)
+  showIntranetOverride Boolean?
+  /// Anula módulos por empresa: { tasks: false } (lo que no aparezca hereda del holding)
+  moduleOverrides      Json     @default("{}")
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
   users     User[]
   areas     AreaCompany[]
   requests  Request[]
   documents Document[]
+  timeLogs  TimeEntry[]
 }
 
 model Area {
-  id          String   @id @default(uuid())
-  name        String
-  description String?
-  icon        String   @default("folder")
+  id           String       @id @default(uuid())
+  name         String
+  description  String?
+  icon         String       @default("folder")
   /// Área transversal del holding (p. ej. Calidad, Jurídica) que atiende a varias empresas
-  isShared    Boolean  @default(false)
-  active      Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  isShared     Boolean      @default(false)
+  /// Cómo se arman los horarios del área
+  scheduleMode ScheduleMode @default(FIXED)
+  active       Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
 
-  companies   AreaCompany[]
-  members     AreaMember[]
-  forms       RequestForm[]
-  requests    Request[]
-  escalations Escalation[]  @relation("EscTargetArea")
+  companies       AreaCompany[]
+  members         AreaMember[]
+  forms           RequestForm[]
+  requests        Request[]
+  escalations     Escalation[]    @relation("EscTargetArea")
+  tasks           Task[]
+  shiftTemplates  ShiftTemplate[]
+  scheduleEntries ScheduleEntry[]
+  leaves          LeaveRequest[]
+  positions       JobPosition[]
 }
 
 /// Empresas a las que atiende cada área
@@ -144,13 +214,25 @@ model User {
   updatedAt    DateTime   @updatedAt
 
   memberships         AreaMember[]
-  requestsCreated     Request[]      @relation("Requester")
-  requestsAssigned    Request[]      @relation("Assignee")
-  events              RequestEvent[] @relation("EventActor")
+  requestsCreated     Request[]          @relation("Requester")
+  requestsAssigned    Request[]          @relation("Assignee")
+  events              RequestEvent[]     @relation("EventActor")
   notifications       Notification[]
-  escalationsCreated  Escalation[]   @relation("EscRequestedBy")
-  escalationsTargeted Escalation[]   @relation("EscTargetUser")
+  escalationsCreated  Escalation[]       @relation("EscRequestedBy")
+  escalationsTargeted Escalation[]       @relation("EscTargetUser")
   attachments         Attachment[]
+  tasksCreated        Task[]             @relation("TaskCreator")
+  tasksAssigned       Task[]             @relation("TaskAssignee")
+  attendanceCodes     AttendanceCode[]
+  attendanceRecords   AttendanceRecord[]
+  scheduleEntries     ScheduleEntry[]
+  leaves              LeaveRequest[]     @relation("LeaveRequester")
+  leavesDecided       LeaveRequest[]     @relation("LeaveDecider")
+  jobAssignments      JobAssignment[]
+  timeEntries         TimeEntry[]        @relation("TimeOwner")
+  timeEntriesLogged   TimeEntry[]        @relation("TimeLogger")
+  kpiMeasures         KpiMeasure[]       @relation("MeasureOwner")
+  kpiMeasuresLogged   KpiMeasure[]       @relation("MeasureLogger")
 }
 
 model AreaMember {
@@ -297,6 +379,8 @@ model Notification {
   type      String
   title     String
   body      String
+  /// Ruta del panel a la que lleva la notificación cuando no hay solicitud asociada
+  link      String?
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
 
@@ -311,7 +395,7 @@ model MailLog {
   to        String
   subject   String
   event     String
-  /// SENT | FAILED | SKIPPED
+  /// SENT | FAILED | SKIPPED (sin SMTP) | DISABLED (apagado por el superadministrador)
   status    String
   error     String?
   createdAt DateTime @default(now())
@@ -328,4 +412,268 @@ model Document {
   url       String
   featured  Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+/// Tarea que un líder asigna a un colaborador de su área
+model Task {
+  id             String     @id @default(uuid())
+  title          String
+  description    String?
+  areaId         String
+  area           Area       @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  createdById    String
+  createdBy      User       @relation("TaskCreator", fields: [createdById], references: [id])
+  assigneeId     String
+  assignee       User       @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  priority       Priority   @default(MEDIUM)
+  status         TaskStatus @default(TODO)
+  dueDate        DateTime?  @db.Date
+  startedAt      DateTime?
+  completedAt    DateTime?
+  completionNote String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([assigneeId, status])
+  @@index([areaId, status])
+}
+
+/// Código de un solo uso enviado al correo del usuario para registrar su asistencia
+model AttendanceCode {
+  id        String         @id @default(uuid())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      AttendanceType
+  /// HMAC del código (nunca se guarda en claro)
+  codeHash  String
+  expiresAt DateTime
+  usedAt    DateTime?
+  attempts  Int            @default(0)
+  createdAt DateTime       @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model AttendanceRecord {
+  id               String         @id @default(uuid())
+  userId           String
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type             AttendanceType
+  at               DateTime       @default(now())
+  /// Día laboral (America/Bogota) al que pertenece el registro
+  workDate         DateTime       @db.Date
+  /// Hora que le correspondía según su horario (HH:mm)
+  expectedTime     String?
+  /// Minutos de diferencia: positivo = tarde (entrada) o salida anticipada (salida)
+  deviationMinutes Int?
+  /// ON_TIME | LATE | EARLY_LEAVE | NO_SCHEDULE | REST_DAY
+  punctuality      String?
+  createdAt        DateTime       @default(now())
+
+  @@index([userId, workDate])
+  @@index([workDate])
+}
+
+/// Turno reutilizable de un área (Mañana, Tarde, Noche, Descanso…)
+model ShiftTemplate {
+  id        String   @id @default(uuid())
+  areaId    String
+  area      Area     @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  name      String
+  /// HH:mm
+  startTime String
+  endTime   String
+  color     String   @default("#6457f5")
+  isRest    Boolean  @default(false)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  entries ScheduleEntry[]
+
+  @@index([areaId])
+}
+
+/// Horario de una persona en un día concreto (la fuente de verdad de los 4 tipos de horario)
+model ScheduleEntry {
+  id          String         @id @default(uuid())
+  userId      String
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  areaId      String
+  area        Area           @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  date        DateTime       @db.Date
+  templateId  String?
+  template    ShiftTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  /// Copia de la hora del turno al asignarlo
+  startTime   String?
+  endTime     String?
+  isRest      Boolean        @default(false)
+  note        String?
+  createdById String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@unique([userId, date])
+  @@index([areaId, date])
+}
+
+model LeaveRequest {
+  id               String      @id @default(uuid())
+  seq              Int         @unique @default(autoincrement())
+  userId           String
+  user             User        @relation("LeaveRequester", fields: [userId], references: [id], onDelete: Cascade)
+  /// Área cuyo líder aprueba (null = lo aprueba el administrador)
+  areaId           String?
+  area             Area?       @relation(fields: [areaId], references: [id])
+  type             LeaveType
+  startDate        DateTime    @db.Date
+  endDate          DateTime    @db.Date
+  /// Remunerado (no aplica a incapacidades)
+  paid             Boolean?
+  willReturn       Boolean?
+  departureTime    String?
+  returnTime       String?
+  description      String
+  additionalReason String?
+  /// Soportes: [{ fileName, url, mimeType, size }]
+  documents        Json        @default("[]")
+  status           LeaveStatus @default(PENDING)
+  decidedById      String?
+  decidedBy        User?       @relation("LeaveDecider", fields: [decidedById], references: [id])
+  decidedAt        DateTime?
+  decisionNote     String?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@index([userId, status])
+  @@index([areaId, status])
+  @@index([status])
+}
+
+// ---------------------------------------------------------------- desempeño
+// Área → Cargo (Junior, Semi, Senior…) → Rol (Backend, Frontend…) → Tarea → KPI
+
+/// Cargo dentro de un área (Junior, Semi, Senior, Administrador…)
+model JobPosition {
+  id          String   @id @default(uuid())
+  areaId      String
+  area        Area     @relation(fields: [areaId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  roles JobRole[]
+
+  @@unique([areaId, name])
+}
+
+/// Rol de un cargo (Backend, Frontend, Full Stack, Analista, Bienestar…)
+model JobRole {
+  id          String      @id @default(uuid())
+  positionId  String
+  position    JobPosition @relation(fields: [positionId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  active      Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  tasks       RoleTask[]
+  kpis        Kpi[]
+  assignments JobAssignment[]
+
+  @@unique([positionId, name])
+}
+
+/// Colaborador que desempeña un rol
+model JobAssignment {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roleId    String
+  role      JobRole  @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, roleId])
+  @@index([roleId])
+}
+
+/// Tarea propia del rol (lo que se espera que haga quien lo desempeña)
+model RoleTask {
+  id          String   @id @default(uuid())
+  roleId      String
+  role        JobRole  @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  timeEntries TimeEntry[]
+
+  @@index([roleId])
+}
+
+/// Indicador con el que se mide a quien desempeña el rol
+model Kpi {
+  id          String       @id @default(uuid())
+  roleId      String
+  role        JobRole      @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  /// Unidad de la meta: %, tickets, horas, minutos…
+  unit        String       @default("%")
+  target      Float
+  direction   KpiDirection @default(HIGHER_BETTER)
+  /// Cada cuánto se mide
+  period      KpiPeriod    @default(MONTHLY)
+  active      Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  measures KpiMeasure[]
+
+  @@index([roleId])
+}
+
+/// Valor medido de un KPI para un colaborador en un periodo
+model KpiMeasure {
+  id           String   @id @default(uuid())
+  kpiId        String
+  kpi          Kpi      @relation(fields: [kpiId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User     @relation("MeasureOwner", fields: [userId], references: [id], onDelete: Cascade)
+  /// Primer día del periodo (el día, el lunes de la semana o el día 1 del mes)
+  periodStart  DateTime @db.Date
+  value        Float
+  note         String?
+  recordedById String
+  recordedBy   User     @relation("MeasureLogger", fields: [recordedById], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([kpiId, userId, periodStart])
+  @@index([userId, periodStart])
+}
+
+/// Tiempo que un colaborador dedicó a una tarea del rol para una de las empresas que atiende su área
+model TimeEntry {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation("TimeOwner", fields: [userId], references: [id], onDelete: Cascade)
+  taskId     String
+  task       RoleTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  companyId  String
+  company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  date       DateTime @db.Date
+  minutes    Int
+  note       String?
+  loggedById String
+  loggedBy   User     @relation("TimeLogger", fields: [loggedById], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@index([userId, date])
+  @@index([taskId])
+  @@index([companyId])
 }

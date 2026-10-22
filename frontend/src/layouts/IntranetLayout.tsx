@@ -11,10 +11,11 @@ import type { IntranetCompany } from '../lib/types';
 
 export const useCompany = () => useOutletContext<{ company: IntranetCompany }>().company;
 
-const SECTIONS = [
+type Section = { to: string; label: string; icon: typeof Home; end?: boolean; needs?: 'requests' };
+const SECTIONS: Section[] = [
   { to: '', label: 'Inicio', icon: Home, end: true },
-  { to: 'solicitudes', label: 'Solicitudes', icon: ClipboardList },
-  { to: 'mis-solicitudes', label: 'Mis solicitudes', icon: UserRound },
+  { to: 'solicitudes', label: 'Solicitudes', icon: ClipboardList, needs: 'requests' },
+  { to: 'mis-solicitudes', label: 'Mis solicitudes', icon: UserRound, needs: 'requests' },
   { to: 'estrategia', label: 'Despliegue estratégico', icon: Flag },
   { to: 'contexto', label: 'Contexto organizacional', icon: Building2 },
   { to: 'documentacion', label: 'Documentación', icon: Folder },
@@ -23,7 +24,9 @@ const SECTIONS = [
 
 export default function IntranetLayout() {
   const { slug = '' } = useParams();
-  const { user, isSuper, hasPanel, logout } = useAuth();
+  const { user, isSuper, hasModule, logout } = useAuth();
+  const requests = hasModule('requests');
+  const sections = SECTIONS.filter((s) => !s.needs || requests);
   const loc = useLocation();
   const nav = useNavigate();
   const { data: company, isLoading, error } = useQuery({
@@ -48,11 +51,12 @@ export default function IntranetLayout() {
     if (!company) return [];
     const base = `/intranet/${slug}`;
     return [
-      ...SECTIONS.map((s) => ({ t: s.label, s: 'Sección', h: `${base}/${s.to}`, icon: 'layers' })),
-      ...company.areas.flatMap((a) => a.forms.map((f) => ({ t: f.name, s: `Solicitud · ${a.name}`, h: `${base}/solicitudes/nueva/${f.id}`, icon: f.icon }))),
+      ...sections.map((s) => ({ t: s.label, s: 'Sección', h: `${base}/${s.to}`, icon: 'layers' })),
+      ...(requests ? company.areas.flatMap((a) => a.forms.map((f) => ({ t: f.name, s: `Solicitud · ${a.name}`, h: `${base}/solicitudes/nueva/${f.id}`, icon: f.icon }))) : []),
       ...company.documents.map((d) => ({ t: d.title, s: `Documento · ${d.process || d.category}`, h: d.url, ext: true, icon: 'file-text' })),
     ] as { t: string; s: string; h: string; ext?: boolean; icon: string }[];
-  }, [company, slug]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [company, slug, requests]);
 
   if (!isSuper && user?.company && user.company.slug !== slug) return <Navigate to={`/intranet/${user.company.slug}`} replace />;
   if (isLoading) return <Loading />;
@@ -60,7 +64,7 @@ export default function IntranetLayout() {
 
   const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   const hits = q.trim() ? index.filter((x) => norm(`${x.t} ${x.s}`).includes(norm(q))).slice(0, 10) : [];
-  const current = SECTIONS.find((s) => (s.to ? loc.pathname.startsWith(`/intranet/${slug}/${s.to}`) : loc.pathname.replace(/\/$/, '') === `/intranet/${slug}`));
+  const current = sections.find((s) => (s.to ? loc.pathname.startsWith(`/intranet/${slug}/${s.to}`) : loc.pathname.replace(/\/$/, '') === `/intranet/${slug}`));
   const today = new Date().toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' });
 
   return (
@@ -131,11 +135,9 @@ export default function IntranetLayout() {
             <span className="pill date">
               <Calendar /> <span>{today}</span>
             </span>
-            {hasPanel && (
-              <Link className="pill" to="/app">
-                <LayoutGrid /> <span>Panel de gestión</span>
-              </Link>
-            )}
+            <Link className="pill" to="/app">
+              <LayoutGrid /> <span>Panel de gestión</span>
+            </Link>
             <button className="pill" onClick={logout} title={`Cerrar sesión de ${user?.name}`}>
               <LogOut /> <span>Salir</span>
             </button>
@@ -145,7 +147,7 @@ export default function IntranetLayout() {
 
       <nav className="i-nav" aria-label="Secciones">
         <div className="wrap">
-          {SECTIONS.map((s) => (
+          {sections.map((s) => (
             <NavLink key={s.to} to={s.to ? `/intranet/${slug}/${s.to}` : `/intranet/${slug}`} end={s.end} className={({ isActive }) => (isActive ? 'active' : '')}>
               {s.to === '' && <s.icon />}
               {s.label}

@@ -10,8 +10,9 @@ import { DOC_CATEGORIES } from '../../lib/format';
 import { Icon } from '../../lib/icons';
 import type { Paged, RequestItem } from '../../lib/types';
 
-export function useMyRequests(pageSize = 50) {
+export function useMyRequests(pageSize = 50, enabled = true) {
   return useQuery({
+    enabled,
     queryKey: ['requests', 'mine', pageSize],
     queryFn: async () => (await api.get<Paged<RequestItem>>('/requests', { params: { scope: 'mine', pageSize } })).data,
   });
@@ -47,18 +48,20 @@ export default function IntranetHome() {
   const [si, setSi] = useState(0);
   const slide = slides[si % Math.max(1, slides.length)];
 
+  const { hasModule } = useAuth();
+  const requests = hasModule('requests');
   const tiles = [
-    { to: 'solicitudes', label: 'Solicitudes', icon: ClipboardList },
-    { to: 'mis-solicitudes', label: 'Mis solicitudes', icon: UserRound },
+    { to: 'solicitudes', label: 'Solicitudes', icon: ClipboardList, needs: true },
+    { to: 'mis-solicitudes', label: 'Mis solicitudes', icon: UserRound, needs: true },
     { to: 'estrategia', label: 'Despliegue estratégico', icon: Flag },
     { to: 'contexto', label: 'Contexto organizacional', icon: Building2 },
     { to: 'documentacion', label: 'Documentación', icon: Folder },
     { to: 'sistema-gestion', label: 'Sistema de gestión', icon: ShieldCheck },
-    { to: 'solicitudes', label: 'Áreas que te atienden', icon: Send },
-    { to: 'mis-solicitudes', label: 'Seguimiento', icon: Clock },
-  ];
+    { to: 'solicitudes', label: 'Áreas que te atienden', icon: Send, needs: true },
+    { to: 'mis-solicitudes', label: 'Seguimiento', icon: Clock, needs: true },
+  ].filter((t) => requests || !t.needs);
   const keyDocs = company.documents.filter((d) => d.featured).slice(0, 4);
-  const { data: mine } = useMyRequests();
+  const { data: mine } = useMyRequests(50, requests);
   const open = (mine?.items || []).filter((r) => !['RESOLVED', 'CANCELLED'].includes(r.status));
 
   return (
@@ -174,13 +177,16 @@ export default function IntranetHome() {
             </div>
             <h4>¿Para qué existe este espacio?</h4>
             <p>{company.purposeText || 'Centralizar la información, facilitar la colaboración y optimizar los procesos internos.'}</p>
-            <Link className="ibtn" to={`${base}/solicitudes`}>
-              <Send /> Crear una solicitud
-            </Link>
+            {requests && (
+              <Link className="ibtn" to={`${base}/solicitudes`}>
+                <Send /> Crear una solicitud
+              </Link>
+            )}
           </div>
         </div>
       </div>
 
+      {requests && (
       <div className="icard" style={{ marginTop: 32 }}>
         <div className="h-sec">
           Áreas que te atienden <Link to={`${base}/solicitudes`}><small>Ver catálogo de solicitudes</small></Link>
@@ -197,7 +203,9 @@ export default function IntranetHome() {
           ))}
         </div>
       </div>
+      )}
 
+      {requests && (
       <div className="igrid two" style={{ marginTop: 32 }}>
         <div className="icard">
           <div className="h-sec">
@@ -229,6 +237,7 @@ export default function IntranetHome() {
         </div>
         <MiniCalendar dates={open.map((r) => r.dueAt)} />
       </div>
+      )}
     </>
   );
 }

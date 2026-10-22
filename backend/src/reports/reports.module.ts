@@ -4,6 +4,7 @@ import type { Response } from 'express';
 import { AuthUser, isLeaderOf, isSuper } from '../common/auth-user';
 import { formatCode, PRIORITY_LABEL, STATUS_LABEL } from '../common/business-days';
 import { CurrentUser } from '../common/decorators';
+import { RequireModule } from '../common/modules';
 import { PrismaService } from '../prisma/prisma.service';
 import { OPEN } from '../requests/requests.service';
 
@@ -229,6 +230,7 @@ export class ReportsService {
   }
 }
 
+@RequireModule('reports')
 @Controller('reports')
 export class ReportsController {
   constructor(private svc: ReportsService) {}

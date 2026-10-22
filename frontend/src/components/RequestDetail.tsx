@@ -386,7 +386,7 @@ export function RequestDetail({ id }: { id: string }) {
                             title={`${m.subject}\nPara: ${m.to}\nEstado: ${m.status}`}
                           >
                             {m.status === 'SENT' ? <MailCheck /> : m.status === 'FAILED' ? <MailX /> : <Mail />}
-                            {m.to.split(',').length} correo(s){m.status !== 'SENT' ? ` · ${m.status === 'FAILED' ? 'falló' : 'sin SMTP'}` : ''}
+                            {m.to.split(',').length} correo(s){m.status !== 'SENT' ? ` · ${m.status === 'FAILED' ? 'falló' : m.status === 'DISABLED' ? 'correos apagados' : 'sin SMTP'}` : ''}
                           </span>
                         ))}
                       </div>

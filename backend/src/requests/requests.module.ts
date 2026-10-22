@@ -1,11 +1,13 @@
 import { Body, Controller, Get, Module, Param, Post, Query } from '@nestjs/common';
 import { AuthUser } from '../common/auth-user';
 import { CurrentUser, Roles } from '../common/decorators';
+import { RequireModule } from '../common/modules';
 import { NotifierService } from './notifier.service';
 import { AssignDto, CommentDto, CreateRequestDto, EscalateDto, ListQuery, NoteDto, RespondDto, TransferDto } from './requests.dto';
 import { RequestsService } from './requests.service';
 import { SlaService } from './sla.service';
 
+@RequireModule('requests')
 @Controller('requests')
 export class RequestsController {
   constructor(

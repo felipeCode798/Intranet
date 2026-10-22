@@ -18,6 +18,8 @@ export interface EmailTemplate {
   intro: string;
   rows?: [string, string][];
   message?: { label: string; text: string };
+  /** Código de un solo uso que se muestra en grande */
+  code?: string;
   ctaLabel?: string;
   ctaUrl?: string;
   tone?: 'info' | 'warning' | 'danger' | 'success';
@@ -39,6 +41,9 @@ export function renderEmail(t: EmailTemplate) {
   const msg = t.message
     ? `<div style="margin-top:18px;padding:14px 16px;border-radius:12px;background:#f3f5fa;border-left:4px solid ${toneColor}"><div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7a849b;font-weight:700;margin-bottom:4px">${esc(t.message.label)}</div><div style="font-size:14px;color:#0f1a36;white-space:pre-wrap">${esc(t.message.text)}</div></div>`
     : '';
+  const code = t.code
+    ? `<div style="margin-top:18px;text-align:center;padding:18px;border-radius:14px;background:#f3f5fa;font-size:34px;letter-spacing:.35em;font-weight:800;color:${color};font-family:Consolas,Menlo,monospace">${esc(t.code)}</div>`
+    : '';
   const cta = t.ctaUrl
     ? `<div style="margin-top:24px"><a href="${esc(t.ctaUrl)}" style="display:inline-block;background:${color};color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 22px;border-radius:12px">${esc(t.ctaLabel || 'Ver solicitud')}</a></div>`
     : '';
@@ -51,7 +56,7 @@ export function renderEmail(t: EmailTemplate) {
 <tr><td style="padding:26px 28px">
 <p style="margin:0 0 14px;color:#44506b;font-size:14px;line-height:1.6">${esc(t.intro)}</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #e4e8f1">${rows}</table>
-${msg}${cta}
+${code}${msg}${cta}
 </td></tr>
 <tr><td style="padding:16px 28px;background:#f7f8fc;color:#9aa3b8;font-size:11px">Este es un mensaje automático del sistema de solicitudes de Grupo Playtech. No respondas a este correo.</td></tr>
 </table></td></tr></table></body></html>`;
@@ -82,12 +87,15 @@ export class MailService {
   }
 
   /** Envía el correo y lo deja registrado en MailLog (nunca lanza error) */
-  async send(opts: MailOptions) {
+  async send(opts: MailOptions): Promise<'SENT' | 'FAILED' | 'SKIPPED' | 'DISABLED' | 'NONE'> {
     const to = [...new Set(opts.to.filter(Boolean).map((e) => e.toLowerCase()))];
-    if (!to.length) return;
+    if (!to.length) return 'NONE';
     let status = 'SENT';
     let error: string | undefined;
-    if (!this.transporter) status = 'SKIPPED';
+    if (!(await this.enabled())) {
+      status = 'DISABLED';
+      error = 'Envío de correos apagado por el superadministrador';
+    } else if (!this.transporter) status = 'SKIPPED';
     else {
       try {
         await this.transporter.sendMail({ from: this.from, to, subject: opts.subject, html: opts.html });
@@ -100,6 +108,13 @@ export class MailService {
     await this.prisma.mailLog
       .create({ data: { requestId: opts.requestId, to: to.join(', '), subject: opts.subject, event: opts.event, status, error } })
       .catch((e) => this.logger.error(e));
+    return status as 'SENT' | 'FAILED' | 'SKIPPED' | 'DISABLED';
+  }
+
+  /** Interruptor general (Configuración avanzada). Si no se puede leer, se asume encendido para no perder correos por un fallo transitorio. */
+  private async enabled() {
+    const row = await this.prisma.appSetting.findUnique({ where: { id: 'global' }, select: { emailEnabled: true } }).catch(() => null);
+    return row?.emailEnabled ?? true;
   }
 }
 
